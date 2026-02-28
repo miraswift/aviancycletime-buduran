@@ -247,6 +247,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-truck-loading"></i>
+                                <p>
+                                    Stock Silo
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item <?= $menuGroup == 'ReportProduksi' ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-box-open"></i>
