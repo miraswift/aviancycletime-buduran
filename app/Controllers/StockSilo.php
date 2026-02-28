@@ -55,7 +55,7 @@ class StockSilo extends BaseController
                 $result = [
                     'code' => 400,
                     'status' => 'failed',
-                    'msg' => "Equipment not saved",
+                    'msg' => "Stock not saved",
                     'detail' => $this->equipmentModel->errors(),
                 ];
 
@@ -64,7 +64,7 @@ class StockSilo extends BaseController
                 $result = [
                     'code' => 200,
                     'status' => 'ok',
-                    'msg' => "Equipment saved succesfully",
+                    'msg' => "Stock saved succesfully",
                 ];
 
                 return $this->response->setStatusCode(200)->setJSON($result);
