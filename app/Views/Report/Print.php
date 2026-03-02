@@ -294,7 +294,7 @@
                         <td class="border text-center"><?= $onEquipment['time_equipment'] ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['time_equipment'] : 'Still running' ?></td>
                         <td class="border text-center"><?= $offEquipment ? $offEquipment['duration_equipment'] : '-' ?></td>
-                        <td class="border text-center"><?= $offEquipment ? number_format($offEquipment['actual_equipment'] / 10, 2, '.', ',') : '-' ?></td>
+                        <td class="border text-center"><?= $offEquipment ? number_format($offEquipment['actual_equipment'], 0, '.', ',') : '-' ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php endforeach; ?>
