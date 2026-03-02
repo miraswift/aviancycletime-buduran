@@ -16,6 +16,33 @@ class StockSilo extends BaseController
         $this->stockSiloModel = new StockSiloModel();
     }
 
+    public function get()
+    {
+        $dataStock = [
+            "1101" => $this->getStockByCode("1101"),
+            "1102" => $this->getStockByCode("1102"),
+            "1103" => $this->getStockByCode("1103"),
+            "1104" => $this->getStockByCode("1104"),
+            "1201" => $this->getStockByCode("1201"),
+            "1202" => $this->getStockByCode("1202"),
+            "1203" => $this->getStockByCode("1203"),
+            "1204" => $this->getStockByCode("1204"),
+            "1205" => $this->getStockByCode("1205"),
+            "2203" => $this->getStockByCode("2203"),
+            "2204" => $this->getStockByCode("2204"),
+            "2205" => $this->getStockByCode("2205"),
+        ];
+
+        return $this->response->setStatusCode(200)->setJSON($dataStock);
+    }
+
+    public function getStockByCode($code_stock_silo)
+    {
+        $stockSilo = $this->stockSiloModel->select('SUM(val_stock_silo) AS val_stock_silo')->where('code_stock_silo', $code_stock_silo)->where('status_stock_silo', 'IN')->first();
+
+        return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] : 0 . "";
+    }
+
     public function create()
     {
         $vars = json_decode(json_encode($this->request->getVar()), true);
