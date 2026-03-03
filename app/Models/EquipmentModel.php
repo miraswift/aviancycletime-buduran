@@ -26,6 +26,18 @@ class EquipmentModel extends Model
         return $this->findAll();
     }
 
+    public function getBatchNumberGroupByDateAndHour($date, $timeFrom, $timeTo)
+    {
+        $this->where('name_equipment', 'MIXING');
+        $this->where('date_equipment', $date);
+        $this->where('HOUR(time_equipment) >=', $timeFrom);
+        $this->where('HOUR(time_equipment) <=', $timeTo);
+        $this->groupBy('no_batch');
+        $this->orderBy('no_batch', 'DESC');
+
+        return $this->findAll();
+    }
+
     public function getBatchNumberGroupBySpk($no_spk)
     {
         $this->where('no_spk', $no_spk);

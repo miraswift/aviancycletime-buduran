@@ -372,6 +372,22 @@
         // Daterange
         //Date range picker
         $('.daterange').daterangepicker()
+        $('.timerange').daterangepicker({
+            timePicker: true,
+            timePicker24Hour: true,
+            timePickerIncrement: 1,
+            locale: {
+                format: 'HH:mm'
+            }
+        }).on('show.daterangepicker', function(ev, picker) {
+            picker.container.find(".calendar-table").hide();
+        })
+        // Input Mask
+        //time dd/mm/yyyy
+        // $('.timerange').inputmask('HH:MM', {
+        //     'placeholder': 'hh:mm'
+        // })
+        $('[data-mask]').inputmask()
         // Input Mask
         //time dd/mm/yyyy
         // $('#datetime').inputmask('HH:MM', {
