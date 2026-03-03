@@ -263,6 +263,29 @@
                 // Cycle Batch
                 $batchCycleTimeMinutes = substr($resultFeedingTime, 3);
                 $resultbatchCycleTime = str_replace(':', '.', $batchCycleTimeMinutes);
+
+                // For Downtime Mixing To Underhopper
+                $partsBatch = explode("-", $no_batch);
+                $prefix1 = $partsBatch[0];
+                $prefix2 = $partsBatch[1];
+                $batchNumber = (int)$partsBatch[2];
+                $nextBatchNumber = $batchNumber + 1;
+
+                $nextBatch = $prefix1 . '-' . $prefix2 . '-' . $nextBatchNumber;
+                $underhopperFull = $equipmentModel->where('no_batch', $no_batch)->where('name_equipment', 'UNDERHOPPER FULL')->first();
+                $underhopperDischargeOn = $equipmentModel->where('no_batch', $nextBatch)->where('name_equipment', 'UNDERHOPPER DISCHARGE')->where('status_equipment', 'ON')->first();
+
+                if ($underhopperFull) {
+                    $timeUnderhopperFull = strtotime("1970-01-01 " . $underhopperFull['time_equipment']);
+
+                    if ($underhopperDischargeOn) {
+                        $timeUnderhopperDischargeOn = strtotime("1970-01-01 " . $underhopperDischargeOn['time_equipment']);
+                        // Delay Time
+                        $downtimeMixingToUnderhopper = $timeUnderhopperFull - $timeUnderhopperDischargeOn;
+                        $resultDowntimeMixingToUnderhopper = gmdate("H:i:s", abs($downtimeMixingToUnderhopper));
+                    }
+                }
+                ?>
                 ?>
                 <tr>
                     <th colspan="5" class="text-left">
@@ -282,6 +305,7 @@
                         <span>Total Time: <?= $resultCycleTime ?></span>
                         <br>
                         <span>Delay: <?= $resultDelayTime ?></span>
+                        <span>Delay Mixing To Underhopper: <?= $underhopperFull && $underhopperDischargeOn ? $resultDowntimeMixingToUnderhopper : 0 ?></span>
                     </th>
                 </tr>
                 <?php foreach ($onEquipments as $onEquipment): ?>
