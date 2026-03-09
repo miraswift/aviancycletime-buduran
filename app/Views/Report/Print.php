@@ -268,7 +268,7 @@
                 $partsBatch = explode("-", $no_batch);
                 $prefix1 = $partsBatch[0];
                 $prefix2 = $partsBatch[1];
-                $batchNumber = (int)$partsBatch[2];
+                $batchNumber = isset($partsBatch[2]) ? (int)$partsBatch[2] : 0;
                 $nextBatchNumber = $batchNumber + 1;
 
                 $nextBatch = $prefix1 . '-' . $prefix2 . '-' . $nextBatchNumber;
