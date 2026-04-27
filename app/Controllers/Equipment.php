@@ -50,6 +50,10 @@ class Equipment extends BaseController
         } else {
             $checkEquipment = $this->equipmentModel->where('no_batch', $no_batch)->where('name_equipment', $name_equipment)->where('status_equipment', $status_equipment)->where('line_equipment', $line_equipment)->where('date_equipment', $date_equipment)->first();
 
+            if ($status_equipment == 'OFF') {
+                $checkEquipment = false;
+            }
+
             if ($checkEquipment) {
                 $result = [
                     'code' => 400,
