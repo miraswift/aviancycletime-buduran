@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\EquipmentModel;
 use App\Models\PlantModel;
 use App\Models\StockSiloModel;
 use PHPUnit\TextUI\Configuration\GroupCollection;
@@ -9,11 +10,13 @@ use PHPUnit\TextUI\Configuration\GroupCollection;
 class StockSilo extends BaseController
 {
     protected $stockSiloModel;
+    protected $equipmentModel;
 
     public function __construct()
     {
         $this->plantModel = new PlantModel();
         $this->stockSiloModel = new StockSiloModel();
+        $this->equipmentModel = new EquipmentModel();
     }
 
     public function get()
@@ -40,7 +43,46 @@ class StockSilo extends BaseController
     {
         $stockSilo = $this->stockSiloModel->select('SUM(val_stock_silo) AS val_stock_silo')->where('code_stock_silo', $code_stock_silo)->where('status_stock_silo', 'IN')->first();
 
-        return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] : 0 . "";
+        $name_equipment = "";
+
+        switch ($code_stock_silo) {
+            case "1101":
+                $name_equipment = "FEEDING PASIR SEDANG";
+                break;
+            case "1102":
+                $name_equipment = "FEEDING PASIR KASAR";
+                break;
+            case "1103":
+                $name_equipment = "FEEDING SEMEN PUTIH";
+                break;
+            case "1104":
+                $name_equipment = "FEEDING CACO3";
+                break;
+            case "1201":
+                $name_equipment = "FEEDING PASIR HALUS";
+                break;
+            case "1202":
+                $name_equipment = "FEEDING SEMEN PUTIH";
+                break;
+            case "1203":
+                $name_equipment = "FEEDING SEMEN GREY";
+                break;
+            case "1204":
+                $name_equipment = "FEEDING CACO3";
+                break;
+            case "1205":
+                $name_equipment = "FEEDING SEMEN PUTIH";
+                break;
+            default:
+                $name_equipment = "";
+                break;
+        }
+
+        $getStockOut = $this->equipmentModel->select('SUM(actual_equipment) AS total_actual')->where('name_equipment', $name_equipment)->where('type_equipment', 'FEEDING')->where('status_equipment', 'OFF')->first();
+
+        $stockOut = $getStockOut ? $getStockOut['total_actual'] : 0;
+
+        return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] - $stockOut : 0 . "";
     }
 
     public function create()
