@@ -13,6 +13,8 @@ $routes->post('/equipment/createlog', 'Equipment::createLog');
 // Stock Silo
 $routes->post('/stocksilo/create', 'StockSilo::create');
 $routes->get('/stocksilo', 'StockSilo::get');
+$routes->get('/stocksilo/index', 'StockSilo::index');
+$routes->get('/stocksilo/print', 'StockSilo::print');
 // Report Cycletime
 $routes->get('/reportcycletime', 'ReportCycletime::index');
 $routes->get('/reportcycletime/(:any)', 'ReportCycletime::detail/$1');

@@ -7,6 +7,8 @@ use App\Models\PlantModel;
 use App\Models\StockSiloModel;
 use PHPUnit\TextUI\Configuration\GroupCollection;
 
+use Mpdf\Mpdf;
+
 class StockSilo extends BaseController
 {
     protected $stockSiloModel;
@@ -17,6 +19,15 @@ class StockSilo extends BaseController
         $this->plantModel = new PlantModel();
         $this->stockSiloModel = new StockSiloModel();
         $this->equipmentModel = new EquipmentModel();
+    }
+
+    public function index()
+    {
+        $data['title'] = 'Stock Silo';
+        $data['menuGroup'] = '';
+        $data['menu'] = 'StockSilo';
+
+        return view('StockSilo/Index', $data);
     }
 
     public function get()
@@ -85,6 +96,42 @@ class StockSilo extends BaseController
         return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] - $stockOut : 0 . "";
     }
 
+    public function print()
+    {
+        $vars = $this->request->getVar();
+
+        $daterange = $vars['daterange'];
+        $dates = explode('-', $daterange);
+
+        $dateFrom = date('Y-m-d', strtotime($dates[0]));
+        $dateTo = date('Y-m-d', strtotime($dates[1]));
+
+        $data['dateFrom'] = $dateFrom;
+        $data['dateTo'] = $dateTo;
+        $data['materials'] = $this->getMaterials();
+        $data['stockSiloModel'] = $this->stockSiloModel;
+        $data['equipmentModel'] = $this->equipmentModel;
+
+        $view = view('StockSilo/Print', $data);
+
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'margin_top' => 5,
+            'margin_bottom' => 5,
+            'margin_left' => 5,
+            'margin_right' => 5,
+        ]);
+
+        $mpdf->WriteHTML($view);
+
+        // Output sebagai browser PDF
+        return $this->response
+            ->setHeader('Content-Type', 'application/pdf')
+            ->setHeader('Content-Disposition', 'inline;filename=' . 'Laporan_StockSilo' . $dateFrom . '-' . $dateTo . '.pdf')
+            ->setBody($mpdf->Output('', 'S')); // 'S' = return as string
+    }
+
     public function create()
     {
         $vars = json_decode(json_encode($this->request->getVar()), true);
@@ -139,5 +186,53 @@ class StockSilo extends BaseController
                 return $this->response->setStatusCode(200)->setJSON($result);
             }
         }
+    }
+
+    public function getMaterials()
+    {
+        $materials = [
+            [
+                "code" => "1101",
+                "name" => "FEEDING PASIR SEDANG",
+            ],
+            [
+                "code" => "1101",
+                "name" => "FEEDING PASIR SEDANG",
+            ],
+            [
+                "code" => "1101",
+                "name" => "FEEDING PASIR SEDANG",
+            ],
+            [
+                "code" => "1102",
+                "name" => "FEEDING PASIR KASAR",
+            ],
+            [
+                "code" => "1103",
+                "name" => "FEEDING SEMEN PUTIH",
+            ],
+            [
+                "code" => "1104",
+                "name" => "FEEDING CACO3",
+            ],
+            [
+                "code" => "1201",
+                "name" => "FEEDING PASIR HALUS",
+            ],
+            [
+                "code" => "1202",
+                "name" => "FEEDING SEMEN PUTIH",
+            ],
+            [
+                "code" => "1204",
+                "name" => "FEEDING CACO3",
+            ],
+            [
+                "code" => "1205",
+                "name" => "FEEDING SEMEN PUTIH",
+            ],
+        ];
+
+        return $materials;
     }
 }

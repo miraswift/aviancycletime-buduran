@@ -248,7 +248,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
+                            <a href="/stocksilo/index" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-truck-loading"></i>
                                 <p>
                                     Stock Silo
