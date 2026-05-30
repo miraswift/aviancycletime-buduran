@@ -32,6 +32,15 @@
                                 <div class="col-10">
                                     <form action="/stocksilo/print" method="GET" target="_blank">
                                         <div class="row">
+                                            <label for="">Silo</label>
+                                            <div class="form-group ml-3">
+                                                <select name="silo" id="" class="form-control select2bs4">
+                                                    <?php foreach ($materials as $material): ?>
+                                                        <option value="<?= $material['code'] ?>"><?= $material['code'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="ml-3"></div>
                                             <label>Date range:</label>
                                             <div class="form-group ml-3">
                                                 <div class="input-group">

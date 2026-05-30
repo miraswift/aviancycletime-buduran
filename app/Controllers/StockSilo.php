@@ -27,6 +27,8 @@ class StockSilo extends BaseController
         $data['menuGroup'] = '';
         $data['menu'] = 'StockSilo';
 
+        $data['materials'] = $this->getMaterials();
+
         return view('StockSilo/Index', $data);
     }
 
@@ -100,6 +102,7 @@ class StockSilo extends BaseController
     {
         $vars = $this->request->getVar();
 
+        $silo = $vars['silo'];
         $daterange = $vars['daterange'];
         $dates = explode('-', $daterange);
 
@@ -108,9 +111,17 @@ class StockSilo extends BaseController
 
         $data['dateFrom'] = $dateFrom;
         $data['dateTo'] = $dateTo;
-        $data['materials'] = $this->getMaterials();
-        $data['stockSiloModel'] = $this->stockSiloModel;
-        $data['equipmentModel'] = $this->equipmentModel;
+
+        $materials = $this->getMaterials();
+
+        $materialKey = array_search($silo, array_column($materials, 'code'));
+
+        $material = $materials[$materialKey];
+
+        // dd($material);
+
+        $data['stoks'] = $this->stockSiloModel->getUnionStockAndActual($material['name'], $silo, $dateFrom, $dateTo);
+        $data['silo'] = $silo;
 
         $view = view('StockSilo/Print', $data);
 

@@ -84,9 +84,6 @@
             background-color: red;
         }
     </style>
-    <?php
-    // dd($stoks);
-    ?>
     <div class="row">
         <div class="column" style="width: 100%;">
             <h1 class="text-center">Report Stock Silo <?= $silo ?></h1>
@@ -97,28 +94,25 @@
         <table class="border">
             <tr class="border">
                 <th class="border">No</th>
-                <th class="border">Time</th>
-                <th class="border">No</th>
-                <th class="border">IN</th>
-                <th class="border">OUT</th>
-                <th class="border">STOK</th>
+                <th class="border">Material</th>
+                <th class="border">Masuk</th>
+                <th class="border">Keluar</th>
+                <th class="border">Stok Akhir</th>
             </tr>
             <?php
             $no = 1;
-            $stok_in = 0;
-            $stok_out = 0;
-            foreach ($stoks as $stok): ?>
+            foreach ($materials as $material): ?>
                 <?php
-                $stok['status'] == 'IN' ? $stok_in += (int)$stok['value'] : $stok_in += 0;
-                $stok['status'] == 'OUT' ? $stok_out += (int)$stok['value'] : $stok_out += 0;
+                $getStockIn = $stockSiloModel->select('SUM(val_stock_silo) AS val_stock_silo ')->where('code_stock_silo', $material['code'])->where('date_stock_silo >=', $dateFrom)->where('date_stock_silo <=', $dateTo)->first();
+
+                $getStockOut = $equipmentModel->select('SUM(actual_equipment) AS actual_equipment')->where('status_equipment', 'OFF')->where('name_equipment', $material['name'])->where('date_equipment >=', $dateFrom)->where('date_equipment <=', $dateTo)->first();
                 ?>
                 <tr>
-                    <td><?= $no++ ?></td>
-                    <td class="border-l text-center"><?= $stok['timestamp'] ?></td>
-                    <td class="border-l text-center"><?= $stok['number'] ?></td>
-                    <td class="border-l text-center"><?= $stok['status'] == 'IN' ? $stok['value'] : '-' ?></td>
-                    <td class="border-l text-center"><?= $stok['status'] == 'OUT' ? $stok['value'] : '-' ?></td>
-                    <td class="border-l text-center"><?= $stok_in - $stok_out ?></td>
+                    <td class="text-center"><?= $no++; ?></td>
+                    <td class="border-l"><?= $material['code'] ?></td>
+                    <td class="border-l text-center"><?= $getStockIn['val_stock_silo'] ?? 0 ?></td>
+                    <td class="border-l text-center"><?= $getStockOut['actual_equipment'] ?? 0 ?></td>
+                    <td class="border-l text-center"><?= $getStockIn['val_stock_silo'] - $getStockOut['actual_equipment'] ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
