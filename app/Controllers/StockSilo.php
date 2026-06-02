@@ -78,7 +78,7 @@ class StockSilo extends BaseController
                 $name_equipment = "FEEDING SEMEN PUTIH";
                 break;
             case "1203":
-                $name_equipment = "FEEDING SEMEN GREY";
+                $name_equipment = "FEEDING SEMEN ABU";
                 break;
             case "1204":
                 $name_equipment = "FEEDING CACO3";
@@ -91,11 +91,12 @@ class StockSilo extends BaseController
                 break;
         }
 
-        $getStockOut = $this->equipmentModel->select('SUM(actual_equipment) AS total_actual')->where('name_equipment', $name_equipment)->where('type_equipment', 'FEEDING')->where('status_equipment', 'OFF')->first();
+        $getStockOut = $this->equipmentModel->select('SUM(actual_equipment) AS total_actual')->where('name_equipment', $name_equipment)->where('type_equipment', 'DOSSING')->where('status_equipment', 'OFF')->first();
 
         $stockOut = $getStockOut ? $getStockOut['total_actual'] : 0;
 
         return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] - $stockOut : 0 . "";
+        // return $stockOut;
     }
 
     public function print()
@@ -236,7 +237,7 @@ class StockSilo extends BaseController
             ],
             [
                 "code" => "1203",
-                "name" => "FEEDING SEMEN GREY",
+                "name" => "FEEDING SEMEN ABU",
             ],
             [
                 "code" => "1204",
