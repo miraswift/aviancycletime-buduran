@@ -235,6 +235,10 @@ class StockSilo extends BaseController
                 "name" => "FEEDING SEMEN PUTIH",
             ],
             [
+                "code" => "1203",
+                "name" => "FEEDING SEMEN GREY",
+            ],
+            [
                 "code" => "1204",
                 "name" => "FEEDING CACO3",
             ],
