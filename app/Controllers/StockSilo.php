@@ -69,7 +69,7 @@ class StockSilo extends BaseController
                 $name_equipment = "FEEDING SEMEN PUTIH";
                 break;
             case "1104":
-                $name_equipment = "FEEDING CACO3";
+                $name_equipment = "FEEDING KALSIUM";
                 break;
             case "1201":
                 $name_equipment = "FEEDING PASIR HALUS";
@@ -81,7 +81,7 @@ class StockSilo extends BaseController
                 $name_equipment = "FEEDING SEMEN ABU";
                 break;
             case "1204":
-                $name_equipment = "FEEDING CACO3";
+                $name_equipment = "FEEDING KALSIUM";
                 break;
             case "1205":
                 $name_equipment = "FEEDING SEMEN PUTIH";
@@ -225,7 +225,7 @@ class StockSilo extends BaseController
             ],
             [
                 "code" => "1104",
-                "name" => "FEEDING CACO3",
+                "name" => "FEEDING KALSIUM",
             ],
             [
                 "code" => "1201",
@@ -241,7 +241,7 @@ class StockSilo extends BaseController
             ],
             [
                 "code" => "1204",
-                "name" => "FEEDING CACO3",
+                "name" => "FEEDING KALSIUM",
             ],
             [
                 "code" => "1205",
