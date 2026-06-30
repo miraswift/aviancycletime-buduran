@@ -61,10 +61,10 @@
                     <h5 class="nav-link text-dark"><?= $title ?></h5>
                 </li>
                 <!-- <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="http://localhost/cycletimeindex3.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="http://localhost/cycletime#" class="nav-link">Contact</a>
                 </li> -->
             </ul>
 
@@ -81,7 +81,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-olive elevation-1">
             <!-- Brand Logo -->
-            <a href="/" class="brand-link bg-light">
+            <a href="http://localhost/cycletime/" class="brand-link bg-light">
                 <img src="http://localhost/cycletime/assets/dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-1" style="opacity: 1">
                 <span class="brand-text font-weight-light">Cycletime Report</span>
             </a>
@@ -94,7 +94,7 @@
                         <img src="/uploads/img_user/<?= session('img_user') ?>" class="img-circle border" alt="User Image">
                     </div> -->
                     <div class="info">
-                        <a href="#" class="d-block"><?= session('name_user') ?></a>
+                        <a href="http://localhost/cycletime#" class="d-block"><?= session('name_user') ?></a>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="/" class="nav-link <?= $menu == 'Dashboard' ? 'active' : '' ?>">
+                            <a href="http://localhost/cycletime/" class="nav-link <?= $menu == 'Dashboard' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -112,7 +112,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/stocksilo/index" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
+                            <a href="http://localhost/cycletime/stocksilo/index" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-truck-loading"></i>
                                 <p>
                                     Stock Silo
@@ -120,7 +120,7 @@
                             </a>
                         </li>
                         <li class="nav-item <?= $menuGroup == 'ReportProduksi' ? 'menu-open' : '' ?>">
-                            <a href="#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
+                            <a href="http://localhost/cycletime#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-box-open"></i>
                                 <p>
                                     Report Produksi
@@ -130,19 +130,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/reportcycletime" class="nav-link <?= $menu == 'ReportCycletime' ? 'active' : '' ?>">
+                                    <a href="http://localhost/cycletime/reportcycletime" class="nav-link <?= $menu == 'ReportCycletime' ? 'active' : '' ?>">
                                         <i class="fas fa-sync nav-icon"></i>
                                         <p>Cycle Time</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
+                                    <a href="http://localhost/cycletime/report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
                                         <i class="fas fa-file-pdf nav-icon"></i>
                                         <p>Report</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
+                                    <a href="http://localhost/cycletime/reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
                                         <i class="fas fa-clock nav-icon"></i>
                                         <p>Batch By Hour</p>
                                     </a>
@@ -160,7 +160,7 @@
 
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2025 <a href="https://miraswift.com" target="_blank">Miraswift Auto Solusi</a>.</strong>
+            <strong>Copyright &copy; 2025 <a href="http://localhost/cycletimehttps://miraswift.com" target="_blank">Miraswift Auto Solusi</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0
