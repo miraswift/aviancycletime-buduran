@@ -30,7 +30,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
-                                    <form action="/reportbyhour" method="GET">
+                                    <form action="http://localhost/cycletime/reportbyhour" method="GET">
                                         <div class="row">
                                             <label>Date:</label>
                                             <div class="form-group ml-1">
