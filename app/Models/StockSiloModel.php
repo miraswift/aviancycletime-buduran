@@ -31,7 +31,7 @@ class StockSiloModel extends Model
             ->select("date_equipment AS date, time_equipment AS time, no_batch AS number, actual_equipment AS value, 'OUT' AS status, ADDTIME(date_equipment, time_equipment) AS timestamp")
             ->where('status_equipment', 'OFF')
             ->where('name_equipment', $name_equipment)
-            ->like('line_equipment', $line_equipment)
+            ->whereIn('line_equipment', $line_equipment)
             ->where('date_equipment >=', $dateFrom)
             ->where('date_equipment <=', $dateTo);
 

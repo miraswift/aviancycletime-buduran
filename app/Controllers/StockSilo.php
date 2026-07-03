@@ -44,6 +44,9 @@ class StockSilo extends BaseController
             "1203" => $this->getStockByCode("1203"),
             "1204" => $this->getStockByCode("1204"),
             "1205" => $this->getStockByCode("1205"),
+            "2203" => $this->getStockByCode("2203"),
+            "2204" => $this->getStockByCode("2204"),
+            "2205" => $this->getStockByCode("2205"),
         ];
 
         return $this->response->setStatusCode(200)->setJSON($dataStock);
@@ -75,21 +78,33 @@ class StockSilo extends BaseController
                 break;
             case "1201":
                 $name_equipment = "FEEDING PASIR HALUS";
-                $line_equipment = "L2";
+                $line_equipment = "L1-2";
                 break;
             case "1202":
                 $name_equipment = "FEEDING SEMEN PUTIH";
-                $line_equipment = "L2";
+                $line_equipment = "L1-2";
                 break;
             case "1203":
                 $name_equipment = "FEEDING SEMEN ABU";
-                $line_equipment = "L2";
+                $line_equipment = "L1-2";
                 break;
             case "1204":
                 $name_equipment = "FEEDING KALSIUM";
-                $line_equipment = "L2";
+                $line_equipment = "L1-2";
                 break;
             case "1205":
+                $name_equipment = "FEEDING SEMEN PUTIH";
+                $line_equipment = "L1-2";
+                break;
+            case "2203":
+                $name_equipment = "FEEDING SEMEN ABU";
+                $line_equipment = "L2";
+                break;
+            case "2204":
+                $name_equipment = "FEEDING KALSIUM";
+                $line_equipment = "L2";
+                break;
+            case "2205":
                 $name_equipment = "FEEDING SEMEN PUTIH";
                 $line_equipment = "L2";
                 break;
@@ -214,47 +229,47 @@ class StockSilo extends BaseController
             [
                 "code" => "1101",
                 "name" => "FEEDING PASIR SEDANG",
-                "line" => "L1",
+                "line" => ["L1"],
             ],
             [
                 "code" => "1102",
                 "name" => "FEEDING PASIR KASAR",
-                "line" => "L1",
+                "line" => ["L1"],
             ],
             [
                 "code" => "1103",
                 "name" => "FEEDING SEMEN PUTIH",
-                "line" => "L1",
+                "line" => ["L1"],
             ],
             [
                 "code" => "1104",
                 "name" => "FEEDING KALSIUM",
-                "line" => "L1",
+                "line" => ["L1"],
             ],
             [
                 "code" => "1201",
                 "name" => "FEEDING PASIR HALUS",
-                "line" => "L2",
+                "line" => ["L1-2"],
             ],
             [
                 "code" => "1202",
                 "name" => "FEEDING SEMEN PUTIH",
-                "line" => "L2",
+                "line" => ["L1-2"],
             ],
             [
                 "code" => "1203/2203",
                 "name" => "FEEDING SEMEN ABU",
-                "line" => "L2",
+                "line" => ["L1-2", "L2"],
             ],
             [
                 "code" => "1204/2204",
                 "name" => "FEEDING KALSIUM",
-                "line" => "L2",
+                "line" => ["L1-2", "L2"],
             ],
             [
                 "code" => "1205/2205",
                 "name" => "FEEDING SEMEN PUTIH",
-                "line" => "L2",
+                "line" => ["L1-2", "L2"],
             ],
         ];
 
