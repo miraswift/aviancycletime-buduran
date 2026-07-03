@@ -24,13 +24,14 @@ class StockSiloModel extends Model
 
     protected $useTimestamps = true;
 
-    public function getUnionStockAndActual($name_equipment, $code, $dateFrom, $dateTo)
+    public function getUnionStockAndActual($name_equipment, $line_equipment, $code, $dateFrom, $dateTo)
     {
         // 1. Buat query pertama tanpa get()
         $query1 = $this->db->table('tb_equipment')
             ->select("date_equipment AS date, time_equipment AS time, no_batch AS number, actual_equipment AS value, 'OUT' AS status, ADDTIME(date_equipment, time_equipment) AS timestamp")
             ->where('status_equipment', 'OFF')
             ->where('name_equipment', $name_equipment)
+            ->like('line_equipment', $line_equipment)
             ->where('date_equipment >=', $dateFrom)
             ->where('date_equipment <=', $dateTo);
 

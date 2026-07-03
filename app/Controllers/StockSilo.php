@@ -129,7 +129,7 @@ class StockSilo extends BaseController
 
         // dd($material);
 
-        $data['stoks'] = $this->stockSiloModel->getUnionStockAndActual($material['name'], $silo, $dateFrom, $dateTo);
+        $data['stoks'] = $this->stockSiloModel->getUnionStockAndActual($material['name'], $material['line'], $silo, $dateFrom, $dateTo);
         $data['silo'] = $silo;
 
         $view = view('StockSilo/Print', $data);
