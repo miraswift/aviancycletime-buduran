@@ -117,8 +117,8 @@
                     <td class="border-l text-center"><?= $stok['timestamp'] ?></td>
                     <td class="border-l text-center"><?= $stok['number'] ?></td>
                     <td class="border-l text-center"><?= $stok['status'] == 'IN' ? $stok['value'] : '-' ?></td>
-                    <td class="border-l text-center"><?= $stok['status'] == 'OUT' ? $stok['value'] : '-' ?></td>
-                    <td class="border-l text-center"><?= $stok_in - $stok_out ?></td>
+                    <td class="border-l text-center"><?= $stok['status'] == 'OUT' ? ($stok['value'] / 2) : '-' ?></td>
+                    <td class="border-l text-center"><?= $stok_in - ($stok_out / 2) ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
