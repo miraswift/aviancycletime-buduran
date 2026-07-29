@@ -132,8 +132,8 @@ class StockSilo extends BaseController
 
         $stockOut = $getStockOut ? $getStockOut['total_actual'] : 0;
 
-        // return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] - $stockOut : 0 . "";
-        return $stockOut;
+        return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] - $stockOut : 0 . "";
+        // return $stockOut;
     }
 
     public function print()
