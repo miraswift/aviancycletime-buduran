@@ -114,9 +114,16 @@ class StockSilo extends BaseController
                 break;
         }
 
-        $getStockOut = $this->equipmentModel->select('SUM(actual_equipment) AS total_actual')->where('name_equipment', $name_equipment)->like('line_equipment', $line_equipment)->where('type_equipment', 'DOSSING')->where('status_equipment', 'OFF')->groupBy(['no_batch', 'name_equipment'])->first();
+        $getStockOut = $this->equipmentModel->select('SUM(actual_equipment) AS total_actual')->where('name_equipment', $name_equipment)->like('line_equipment', $line_equipment)->where('type_equipment', 'DOSSING')->where('status_equipment', 'OFF')->groupBy(['no_batch', 'name_equipment'])->findAll();
 
-        $stockOut = $getStockOut ? $getStockOut['total_actual'] : 0;
+        $stockOut = 0;
+        foreach ($getStockOut as $getStockOut) {
+            $stockOut += $getStockOut['total_actual'];
+        }
+
+        // echo $this->equipmentModel->db->getLastQuery();
+
+        // $stockOut = $getStockOut ? $getStockOut['total_actual'] : 0;
 
         return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] - $stockOut : 0 . "";
         // return $stockOut;
