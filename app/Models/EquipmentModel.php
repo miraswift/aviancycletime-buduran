@@ -109,7 +109,7 @@ class EquipmentModel extends Model
     public function getMixingOn($no_batch)
     {
         // $this->select('MAX(id_equipment) AS id_equipment');
-        $this->where('name_equipment', 'MIXING');
+        $this->like('name_equipment', 'MIXING');
         $this->where('status_equipment', 'ON');
         $this->where('no_batch', $no_batch);
 

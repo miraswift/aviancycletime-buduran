@@ -210,6 +210,8 @@
                 $mixingTimeDiff = $mixingTime1->diff($mixingTime2);
                 $totalMixingTime->add($mixingTimeDiff);
 
+                echo json_encode($mixingTimeOn);
+
                 $intervalMixingTime = $cloneTotalMixingTime->diff($totalMixingTime);
 
                 $intervalTotalMixingTime = sprintf(
@@ -285,7 +287,6 @@
                         $resultDowntimeMixingToUnderhopper = gmdate("H:i:s", abs($downtimeMixingToUnderhopper));
                     }
                 }
-                ?>
                 ?>
                 <tr>
                     <th colspan="5" class="text-left">

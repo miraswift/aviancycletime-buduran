@@ -46,6 +46,7 @@ class Report extends BaseController
         $data['equipmentModel'] = $this->equipmentModel;
 
         // return view('Report/Print', $data);
+
         $view = view('Report/Print', $data);
 
         $mpdf = new Mpdf([
