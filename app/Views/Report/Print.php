@@ -139,9 +139,14 @@
 
                 $intervalDossingTime = $cloneTotalDossingTime->diff($totalDossingTime);
 
+                // echo json_encode($dossingTimeOff);
+
+                // Fix interval hari
                 $intervalTotalDossingTime = sprintf(
                     "%02d:%02d:%02d",
-                    $intervalDossingTime->h + ($intervalDossingTime->d * 24), // jika interval lebih dari 1 hari, jam harus ditambah
+                    // $intervalDossingTime->h,
+                    $intervalDossingTime->h + ($intervalDossingTime->d * 24),
+                    // jika interval lebih dari 1 hari, jam harus ditambah
                     $intervalDossingTime->i,
                     $intervalDossingTime->s
                 );
@@ -179,9 +184,12 @@
 
                 $intervalWeighingDischargeTime = $cloneTotalWeighingDischargeTime->diff($totalWeighingDischargeTime);
 
+                // Fix interval hari
                 $intervalTotalWeighingDischargeTime = sprintf(
                     "%02d:%02d:%02d",
-                    $intervalWeighingDischargeTime->h + ($intervalWeighingDischargeTime->d * 24), // jika interval lebih dari 1 hari, jam harus ditambah
+                    // $intervalWeighingDischargeTime->h,
+                    $intervalWeighingDischargeTime->h + ($intervalWeighingDischargeTime->d * 24),
+                    // jika interval lebih dari 1 hari, jam harus ditambah
                     $intervalWeighingDischargeTime->i,
                     $intervalWeighingDischargeTime->s
                 );
@@ -210,7 +218,7 @@
                 $mixingTimeDiff = $mixingTime1->diff($mixingTime2);
                 $totalMixingTime->add($mixingTimeDiff);
 
-                echo json_encode($mixingTimeOn);
+                // echo json_encode($mixingTimeOn);
 
                 $intervalMixingTime = $cloneTotalMixingTime->diff($totalMixingTime);
 
@@ -243,11 +251,13 @@
                 list($hMixing, $mMixing, $sMixing) = explode(":", $intervalTotalMixingTime);
                 //  !!
                 $scndDossingTime = $hDossing * 3600 + $mDossing * 60 + $sDossing;
+                // echo json_encode($scndDossingTime);
                 $scndWeighingDischargeTime = $hWeighingDischarge * 3600 + $mWeighingDischarge * 60 + $sWeighingDischarge;
                 $scndMixing = $hMixing * 3600 + $mMixing * 60 + $sMixing;
                 // Feeding Cycle Time
                 $feedingCycleTime = $scndDossingTime + $scndWeighingDischargeTime;
                 $resultFeedingTime = gmdate("H:i:s", abs($feedingCycleTime));
+                // echo $scndDossingTime . '/' . $scndWeighingDischargeTime;
                 // Cycletime
                 $cycleTime = $feedingCycleTime + $scndMixing;
                 $resultCycleTime = gmdate("H:i:s", abs($cycleTime));

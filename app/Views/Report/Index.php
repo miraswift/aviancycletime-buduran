@@ -71,7 +71,7 @@
                                                     <td class="text-center"><?= $no++; ?></td>
                                                     <td><?= $batch['no_spk'] ?></td>
                                                     <td>
-                                                        <a href="http://localhost/cycletime/report/<?= $batch['no_spk'] ?>" class="btn btn-primary" title="Detail" target="__blank"><i class="fas fa-print"></i></a>
+                                                        <a href="http://localhost/cycletime/report/<?= $batch['no_spk'] ?>" class="btn btn-primary" title="Detail"><i class="fas fa-print"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php endif; ?>
