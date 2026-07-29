@@ -65,7 +65,7 @@ class StockSilo extends BaseController
                 $line_equipment = "L1";
                 break;
             case "1102":
-                $name_equipment = "FEEDING PASIR KASAR";
+                $name_equipment = "FEEDING PASIR HALUS";
                 $line_equipment = "L1";
                 break;
             case "1103":
@@ -77,7 +77,7 @@ class StockSilo extends BaseController
                 $line_equipment = "L1";
                 break;
             case "1201":
-                $name_equipment = "FEEDING PASIR HALUS";
+                $name_equipment = "FEEDING PASIR KASAR";
                 $line_equipment = "L1-2";
                 break;
             case "1202":
@@ -233,7 +233,7 @@ class StockSilo extends BaseController
             ],
             [
                 "code" => "1102",
-                "name" => "FEEDING PASIR KASAR",
+                "name" => "FEEDING PASIR HALUS",
                 "line" => ["L1"],
             ],
             [
@@ -248,7 +248,7 @@ class StockSilo extends BaseController
             ],
             [
                 "code" => "1201",
-                "name" => "FEEDING PASIR HALUS",
+                "name" => "FEEDING PASIR KASAR",
                 "line" => ["L1-2"],
             ],
             [
