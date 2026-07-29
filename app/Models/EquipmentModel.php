@@ -15,7 +15,6 @@ class EquipmentModel extends Model
 
     protected $useTimestamps = true;
 
-
     public function getBatchNumberGroup($dateFrom, $dateTo)
     {
         $this->where('date_equipment >=', $dateFrom);

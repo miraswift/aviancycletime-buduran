@@ -114,19 +114,26 @@ class StockSilo extends BaseController
                 break;
         }
 
-        $getStockOut = $this->equipmentModel->select('SUM(actual_equipment) AS total_actual')->where('name_equipment', $name_equipment)->like('line_equipment', $line_equipment)->where('type_equipment', 'DOSSING')->where('status_equipment', 'OFF')->groupBy(['no_batch', 'name_equipment'])->findAll();
+        $subQueryStockOut = "(SELECT MIN(id_equipment) FROM tb_equipment WHERE name_equipment = '$name_equipment' AND line_equipment = '$line_equipment' AND type_equipment = 'DOSSING' AND status_equipment = 'OFF' GROUP BY no_batch, name_equipment)";
 
-        $stockOut = 0;
-        foreach ($getStockOut as $getStockOut) {
-            $stockOut += $getStockOut['total_actual'];
-        }
+        $getStockOut = $this->equipmentModel
+            ->selectSum('actual_equipment', 'total_actual')
+            ->where("id_equipment IN $subQueryStockOut", null, null)
+            ->first();
+
+        // $getStockOut = $this->equipmentModel->select('SUM(actual_equipment) AS total_actual')->where('name_equipment', $name_equipment)->like('line_equipment', $line_equipment)->where('type_equipment', 'DOSSING')->where('status_equipment', 'OFF')->groupBy(['no_batch', 'name_equipment'])->findAll();
+
+        // $stockOut = 0;
+        // foreach ($getStockOut as $getStockOut) {
+        //     $stockOut += $getStockOut['total_actual'];
+        // }
 
         // echo $this->equipmentModel->db->getLastQuery();
 
-        // $stockOut = $getStockOut ? $getStockOut['total_actual'] : 0;
+        $stockOut = $getStockOut ? $getStockOut['total_actual'] : 0;
 
-        return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] - $stockOut : 0 . "";
-        // return $stockOut;
+        // return (!empty($stockSilo['val_stock_silo'])) ? $stockSilo['val_stock_silo'] - $stockOut : 0 . "";
+        return $stockOut;
     }
 
     public function print()
