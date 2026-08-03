@@ -17,8 +17,8 @@ class EquipmentModel extends Model
 
     public function getBatchNumberGroup($dateFrom, $dateTo)
     {
-        $this->where('date_equipment >=', $dateFrom);
-        $this->where('date_equipment <=', $dateTo);
+        $this->where('DATE(created_at) >=', $dateFrom);
+        $this->where('DATE(created_at) <=', $dateTo);
         $this->groupBy('no_batch');
         $this->orderBy('no_batch', 'DESC');
 
@@ -28,9 +28,9 @@ class EquipmentModel extends Model
     public function getBatchNumberGroupByDateAndHour($date, $timeFrom, $timeTo)
     {
         $this->where('name_equipment', 'MIXING');
-        $this->where('date_equipment', $date);
-        $this->where('HOUR(time_equipment) >=', $timeFrom);
-        $this->where('HOUR(time_equipment) <=', $timeTo);
+        $this->where('DATE(created_at)', $date);
+        $this->where('HOUR(created_at) >=', $timeFrom);
+        $this->where('HOUR(created_at) <=', $timeTo);
         $this->groupBy('no_batch');
         $this->orderBy('no_batch', 'DESC');
 
@@ -48,8 +48,8 @@ class EquipmentModel extends Model
 
     public function getSpkGroup($dateFrom, $dateTo)
     {
-        $this->where('date_equipment >=', $dateFrom);
-        $this->where('date_equipment <=', $dateTo);
+        $this->where('DATE(created_at) >=', $dateFrom);
+        $this->where('DATE(created_at) <=', $dateTo);
         $this->groupBy('no_spk');
         $this->orderBy('no_spk', 'DESC');
 

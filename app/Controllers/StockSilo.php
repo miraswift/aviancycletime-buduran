@@ -62,51 +62,51 @@ class StockSilo extends BaseController
         switch ($code_stock_silo) {
             case "1101":
                 $name_equipment = "FEEDING PASIR SEDANG";
-                $line_equipment = "L1";
+                $line_equipment = ["L1"];
                 break;
             case "1102":
                 $name_equipment = "FEEDING PASIR HALUS";
-                $line_equipment = "L1";
+                $line_equipment = ["L1"];
                 break;
             case "1103":
                 $name_equipment = "FEEDING SEMEN PUTIH";
-                $line_equipment = "L1";
+                $line_equipment = ["L1"];
                 break;
             case "1104":
                 $name_equipment = "FEEDING KALSIUM";
-                $line_equipment = "L1";
+                $line_equipment = ["L1"];
                 break;
             case "1201":
                 $name_equipment = "FEEDING PASIR KASAR";
-                $line_equipment = "L1-2";
+                $line_equipment = ["L1-2"];
                 break;
             case "1202":
-                $name_equipment = "FEEDING SEMEN PUTIH";
-                $line_equipment = "L1-2";
+                $name_equipment = "FEEDING SEMEN PUTI";
+                $line_equipment = ["L1-2"];
                 break;
             case "1203":
                 $name_equipment = "FEEDING SEMEN ABU";
-                $line_equipment = "L1-2";
+                $line_equipment = ["L1-2", "L2"];
                 break;
             case "1204":
                 $name_equipment = "FEEDING KALSIUM";
-                $line_equipment = "L1-2";
+                $line_equipment = ["L1-2", "L2"];
                 break;
             case "1205":
                 $name_equipment = "FEEDING SEMEN PUTIH";
-                $line_equipment = "L1-2";
+                $line_equipment = ["L1-2", "L2"];
                 break;
             case "2203":
                 $name_equipment = "FEEDING SEMEN ABU";
-                $line_equipment = "L2";
+                $line_equipment = ["L2"];
                 break;
             case "2204":
                 $name_equipment = "FEEDING KALSIUM";
-                $line_equipment = "L2";
+                $line_equipment = ["L2"];
                 break;
             case "2205":
                 $name_equipment = "FEEDING SEMEN PUTIH";
-                $line_equipment = "L2";
+                $line_equipment = ["L2"];
                 break;
             default:
                 $name_equipment = "";
@@ -114,7 +114,11 @@ class StockSilo extends BaseController
                 break;
         }
 
-        $subQueryStockOut = "(SELECT MIN(id_equipment) FROM tb_equipment WHERE name_equipment = '$name_equipment' AND line_equipment = '$line_equipment' AND type_equipment = 'DOSSING' AND status_equipment = 'OFF' GROUP BY no_batch, name_equipment)";
+        $line_equipments = "'" . implode("','", $line_equipment) . "'";
+
+        $subQueryStockOut = "(SELECT MIN(id_equipment) FROM tb_equipment WHERE name_equipment = '$name_equipment' AND line_equipment IN ($line_equipments) AND type_equipment = 'DOSSING' AND status_equipment = 'OFF' GROUP BY no_batch, name_equipment,line_equipment)";
+
+        // $subQueryStockOut = "(SELECT MIN(id_equipment) FROM tb_equipment WHERE name_equipment = '$name_equipment' AND line_equipment IN ('$line_equipments') AND type_equipment = 'DOSSING' AND status_equipment = 'OFF' GROUP BY no_batch, name_equipment)";
 
         $getStockOut = $this->equipmentModel
             ->selectSum('actual_equipment', 'total_actual')
