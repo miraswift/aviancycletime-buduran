@@ -322,13 +322,16 @@
                 <?php foreach ($onEquipments as $onEquipment): ?>
                     <?php
                     $offEquipment = $equipmentModel->where('no_batch', $no_batch)->where('name_equipment', $onEquipment['name_equipment'])->where('status_equipment', 'OFF')->first();
+
+                    $timeOffBypass = date('H:i:s', strtotime($onEquipment['time_equipment'], strtotime("+30 seconds")));
+                    $durationBypass = '00:30:00';
                     ?>
                     <tr class="border">
                         <td class="border"><?= $onEquipment['name_equipment'] ?></td>
                         <td class="border text-center"><?= $onEquipment['line_equipment'] ?></td>
                         <td class="border text-center"><?= $onEquipment['time_equipment'] ?></td>
-                        <td class="border text-center"><?= $offEquipment ? $offEquipment['time_equipment'] : 'Still running' ?></td>
-                        <td class="border text-center"><?= $offEquipment ? $offEquipment['duration_equipment'] : '-' ?></td>
+                        <td class="border text-center"><?= $offEquipment ? $offEquipment['time_equipment'] : $timeOffBypass ?></td>
+                        <td class="border text-center"><?= $offEquipment ? $offEquipment['duration_equipment'] : $durationBypass ?></td>
                         <td class="border text-center"><?= $offEquipment ? number_format($offEquipment['actual_equipment'], 0, '.', ',') : '-' ?></td>
                     </tr>
                 <?php endforeach; ?>
