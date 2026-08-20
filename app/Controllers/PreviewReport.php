@@ -15,7 +15,7 @@ class PreviewReport extends BaseController
 
     public function index()
     {
-        $no_spk = $this->request->getGet('no_spk');
+        $no_spk = $this->request->getGet('no_spk') ?? 'all';
         $daterange = $this->request->getGet('daterange');
 
         if ($daterange) {
