@@ -198,17 +198,539 @@
                                                         <td><?= $mixingTime ?></td>
                                                         <td><?= $underhopperDischargeTime ?></td>
                                                         <td><?= $cycleTime ?></td>
-                                                        <td><?= $mat1101 ?></td>
-                                                        <td><?= $mat1102  ?></td>
-                                                        <td><?= $mat1103  ?></td>
-                                                        <td><?= $mat1104  ?></td>
-                                                        <td><?= $mat1201  ?></td>
-                                                        <td><?= $mat1202  ?></td>
-                                                        <td><?= $mat2203  ?></td>
-                                                        <td><?= $mat2204  ?></td>
-                                                        <td><?= $mat2205  ?></td>
+                                                        <td><?= $mat1101 > 0 ? $mat1101 : "<a href='#' data-toggle='modal' data-target='#modal1101$no_batch'>$mat1101</a>" ?></td>
+                                                        <td><?= $mat1102  > 0 ? $mat1102 : "<a href='#' data-toggle='modal' data-target='#modal1102$no_batch'>$mat1102</a>" ?></td>
+                                                        <td><?= $mat1103  > 0 ? $mat1103 : "<a href='#' data-toggle='modal' data-target='#modal1103$no_batch'>$mat1103</a>" ?></td>
+                                                        <td><?= $mat1104  > 0 ? $mat1104 : "<a href='#' data-toggle='modal' data-target='#modal1104$no_batch'>$mat1104</a>" ?></td>
+                                                        <td><?= $mat1201  > 0 ? $mat1201 : "<a href='#' data-toggle='modal' data-target='#modal1201$no_batch'>$mat1201</a>" ?></td>
+                                                        <td><?= $mat1202  > 0 ? $mat1202 : "<a href='#' data-toggle='modal' data-target='#modal1202$no_batch'>$mat1202</a>" ?></td>
+                                                        <td><?= $mat2203  > 0 ? $mat2203 : "<a href='#' data-toggle='modal' data-target='#modal2203$no_batch'>$mat2203</a>" ?></td>
+                                                        <td><?= $mat2204  > 0 ? $mat2204 : "<a href='#' data-toggle='modal' data-target='#modal2204$no_batch'>$mat2204</a>" ?></td>
+                                                        <td><?= $mat2205  > 0 ? $mat2205 : "<a href='#' data-toggle='modal' data-target='#modal2205$no_batch'>$mat2205</a>" ?></td>
                                                     </tr>
                                                 <?php endif; ?>
+                                                <!-- Modal 1101 -->
+                                                <div class="modal fade" id="modal1101<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1101</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING PASIR SEDANG">
+                                                                            <input type="hidden" name="line_equipment" value="L1">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal 1102 -->
+                                                <div class="modal fade" id="modal1102<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1102</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING PASIR HALUS">
+                                                                            <input type="hidden" name="line_equipment" value="L1">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal 1103 -->
+                                                <div class="modal fade" id="modal1103<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1103</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING SEMEN PUTIH">
+                                                                            <input type="hidden" name="line_equipment" value="L1">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal 1104 -->
+                                                <div class="modal fade" id="modal1104<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1104</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING KALSIUM">
+                                                                            <input type="hidden" name="line_equipment" value="L1">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal 1201 -->
+                                                <div class="modal fade" id="modal1201<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1201</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING PASIR KASAR">
+                                                                            <input type="hidden" name="line_equipment" value="L1-2">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal 1202 -->
+                                                <div class="modal fade" id="modal1202<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1202</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING SEMEN PUTIH">
+                                                                            <input type="hidden" name="line_equipment" value="L1-2">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal 2203 -->
+                                                <div class="modal fade" id="modal2203<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1203/2203</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING SEMEN ABU">
+                                                                            <input type="hidden" name="line_equipment" value="L2">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal 2204 -->
+                                                <div class="modal fade" id="modal2204<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1204/2204</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING KALSIUM">
+                                                                            <input type="hidden" name="line_equipment" value="L2">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal 2205 -->
+                                                <div class="modal fade" id="modal2205<?= $no_batch ?>" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Actual 1205/2205</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <?php if (session()->getFlashdata('failed')) : ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <strong><i class="fas fa-exclamation-triangle"></i></strong> &nbsp; <?= session()->getFlashdata('failed') ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <input type="hidden" name="filterSpk" value="<?= $no_spk ?>">
+                                                                            <input type="hidden" name="filterMixer" value="<?= $mixer ?>">
+                                                                            <input type="hidden" name="filterDaterange" value="<?= $daterange ?>">
+                                                                            <input type="hidden" name="name_equipment" value="FEEDING SEMEN PUTIH">
+                                                                            <input type="hidden" name="line_equipment" value="L2">
+                                                                            <div class="form-group">
+                                                                                <label for="no_spk" class="col-form-label">No SPK</label>
+                                                                                <input type="text" name="no_spk" id="no_spk" class="form-control" value="<?= $batch['no_spk'] ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_spk_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_spk') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="no_batch" class="col-form-label">No Batch</label>
+                                                                                <input type="text" name="no_batch" id="no_batch" class="form-control" value="<?= $no_batch ?>" readonly>
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="no_batch_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('no_batch') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <!-- Validation Error Msg -->
+                                                                                <div id="actual_equipment_error" class="invalid-feedback">
+                                                                                    <?= validation_show_error('actual_equipment') ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn bg-navy btn-block rounded-pill">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>

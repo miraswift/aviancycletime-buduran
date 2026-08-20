@@ -185,4 +185,71 @@ class Equipment extends BaseController
             return $this->response->setStatusCode(200)->setJSON($result);
         }
     }
+
+    public function updateActual()
+    {
+        $vars = $this->request->getVar();
+
+        $rules = [
+            'actual_equipment' => [
+                'rules' => 'required|numeric|trim',
+                'errors' => [
+                    'required' => 'Actual wajib diisi',
+                    'numeric' => 'Actual wajib berupa angka',
+                ],
+            ],
+        ];
+
+        if (!$this->validateData($vars, $rules)) {
+            session()->setFlashdata('failed', 'Actual wajib diisi');
+            return redirect()->to('/preview-report');
+        }
+
+        $equipment = $this->equipmentModel->where('no_batch', $vars['no_batch'])->where('name_equipment', $vars['name_equipment'])->where('status_equipment', 'OFF')->first();
+
+        if ($equipment) {
+            $equipmentData = [
+                'id_equipment' => $equipment['id_equipment'],
+                'actual_equipment' => $vars['actual_equipment'],
+            ];
+
+            $save = $this->equipmentModel->save($equipmentData);
+
+            if (!$save) {
+                session()->setFlashdata('failed', 'Terjadi kesalahan, harap coba lagi');
+                return redirect()->to('/preview-report?no_spk=' . $vars['filterSpk'] . '&mixer=' . $vars['filterMixer'] . '&daterange=' . $vars['filterDaterange']);
+            } else {
+                session()->setFlashdata('success', 'Berhasil menyimpan data.' . $equipment['id_equipment']);
+                return redirect()->to('/preview-report?no_spk=' . $vars['filterSpk'] . '&mixer=' . $vars['filterMixer'] . '&daterange=' . $vars['filterDaterange']);
+            }
+        } else {
+            $sampleEquipment = $this->equipmentModel->where('no_batch', $vars['no_batch'])->where('status_equipment', 'ON')->first();
+
+            $equipmentData = [
+                'id_plant' => $sampleEquipment['id_plant'],
+                'type_equipment' => 'DOSSING',
+                'no_spk' => $sampleEquipment['no_spk'],
+                'no_batch' => $sampleEquipment['no_batch'],
+                'code_formula' => $sampleEquipment['code_formula'],
+                'name_equipment' => $vars['name_equipment'],
+                'status_equipment' => 'OFF',
+                'line_equipment' => $vars['line_equipment'],
+                'date_equipment' => $sampleEquipment['date_equipment'],
+                'time_equipment' => $sampleEquipment['time_equipment'],
+                'duration_equipment' => "00:00:00",
+                'target_equipment' => 0,
+                'actual_equipment' => $vars['actual_equipment'],
+            ];
+
+            $save = $this->equipmentModel->save($equipmentData);
+
+            if (!$save) {
+                session()->setFlashdata('failed', 'Terjadi kesalahan, harap coba lagi');
+                return redirect()->to('/preview-report?no_spk=' . $vars['filterSpk'] . '&mixer=' . $vars['filterMixer'] . '&daterange=' . $vars['filterDaterange']);
+            } else {
+                session()->setFlashdata('success', 'Berhasil menyimpan data');
+                return redirect()->to('/preview-report?no_spk=' . $vars['filterSpk'] . '&mixer=' . $vars['filterMixer'] . '&daterange=' . $vars['filterDaterange']);
+            }
+        }
+    }
 }

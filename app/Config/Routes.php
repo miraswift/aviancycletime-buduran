@@ -10,6 +10,7 @@ $routes->get('/', 'Dashboard::index');
 // Equipment
 $routes->post('/equipment/create', 'Equipment::create');
 $routes->post('/equipment/createlog', 'Equipment::createLog');
+$routes->post('/equipment/update/actual', 'Equipment::updateActual');
 // Stock Silo
 $routes->post('/stocksilo/create', 'StockSilo::create');
 $routes->get('/stocksilo', 'StockSilo::get');
