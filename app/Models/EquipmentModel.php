@@ -25,6 +25,37 @@ class EquipmentModel extends Model
         return $this->findAll();
     }
 
+    public function getActualDosing($name_equipment, $no_batch, $line_equipments)
+    {
+        $this->where('no_batch', $no_batch);
+        $this->where('name_equipment', $name_equipment);
+        $this->where('status_equipment', 'OFF');
+        $this->whereIn('line_equipment', $line_equipments);
+
+        return $this->first();
+    }
+
+    public function getActualDosingByBatches($batchNumbers)
+    {
+        $this->where('status_equipment', 'OFF');
+        $this->whereIn('no_batch', $batchNumbers);
+
+        return $this->findAll();
+    }
+
+    public function getBatchNumberGroupByDateSpk($dateFrom, $dateTo, $no_spk)
+    {
+        $this->where('DATE(created_at) >=', $dateFrom);
+        $this->where('DATE(created_at) <=', $dateTo);
+        if ($no_spk != 'all') {
+            $this->where('no_spk', $no_spk);
+        }
+        $this->groupBy('no_batch');
+        $this->orderBy('no_batch', 'DESC');
+
+        return $this->findAll();
+    }
+
     public function getBatchNumberGroupByDateAndHour($date, $timeFrom, $timeTo)
     {
         $this->where('name_equipment', 'MIXING');
@@ -52,6 +83,14 @@ class EquipmentModel extends Model
         $this->where('DATE(created_at) <=', $dateTo);
         $this->groupBy('no_spk');
         $this->orderBy('no_spk', 'DESC');
+
+        return $this->findAll();
+    }
+
+    public function getSpkGroupAll()
+    {
+        $this->groupBy('no_spk');
+        $this->orderBy('id_equipment', 'DESC');
 
         return $this->findAll();
     }

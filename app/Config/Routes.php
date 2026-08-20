@@ -26,3 +26,5 @@ $routes->get('status', 'Status::index');
 // Report
 $routes->get('/reportbyhour', 'ReportByHour::index');
 $routes->get('/reportbyhour/(:any)', 'ReportByHour::print/$1');
+// Preview Report
+$routes->get('/preview-report', 'PreviewReport::index');

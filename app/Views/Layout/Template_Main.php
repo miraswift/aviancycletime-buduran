@@ -9,42 +9,42 @@
     <!-- Google Font: Source Sans Pro -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <!-- <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> -->
     <!-- JQVMap -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
-    <!-- <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> -->
+    <!-- <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> -->
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/summernote/summernote-bs4.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Select2 -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- daterange picker -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/daterangepicker/daterangepicker.css">
     <!-- Select2 -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- daterange picker -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/daterangepicker/daterangepicker.css">
     <!-- daterange picker -->
-    <link rel="stylesheet" href="http://localhost/cycletime/assets/plugins/daterangepicker/daterangepicker.css">
-    <!-- <link rel="stylesheet" href="http://localhost/cycletime/assets/css/styles.css"> -->
+    <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/plugins/daterangepicker/daterangepicker.css">
+    <!-- <link rel="stylesheet" href="<?= env('BASE_URL') ?>assets/css/styles.css"> -->
     <!-- jQuery -->
-    <!-- <script src="http://localhost/cycletime/assets/plugins/jquery/jquery.min.js"></script> -->
+    <!-- <script src="<?= env('BASE_URL') ?>assets/plugins/jquery/jquery.min.js"></script> -->
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
@@ -81,8 +81,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-olive elevation-1">
             <!-- Brand Logo -->
-            <a href="http://localhost/cycletime/" class="brand-link bg-light">
-                <img src="http://localhost/cycletime/assets/dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-1" style="opacity: 1">
+            <a href="<?= env('BASE_URL') ?>" class="brand-link bg-light">
+                <img src="<?= env('BASE_URL') ?>assets/dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-1" style="opacity: 1">
                 <span class="brand-text font-weight-light">Cycletime Report</span>
             </a>
 
@@ -104,7 +104,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="http://localhost/cycletime/" class="nav-link <?= $menu == 'Dashboard' ? 'active' : '' ?>">
+                            <a href="<?= env('BASE_URL') ?>" class="nav-link <?= $menu == 'Dashboard' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -112,7 +112,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="http://localhost/cycletime/stocksilo/index" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
+                            <a href="<?= env('BASE_URL') ?>stocksilo/index" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-truck-loading"></i>
                                 <p>
                                     Stock Silo
@@ -129,20 +129,26 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="http://localhost/cycletime/reportcycletime" class="nav-link <?= $menu == 'ReportCycletime' ? 'active' : '' ?>">
+                                <!-- <li class="nav-item">
+                                    <a href="<?= env('BASE_URL') ?>reportcycletime" class="nav-link <?= $menu == 'ReportCycletime' ? 'active' : '' ?>">
                                         <i class="fas fa-sync nav-icon"></i>
                                         <p>Cycle Time</p>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
-                                    <a href="http://localhost/cycletime/report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
+                                    <a href="<?= env('BASE_URL') ?>report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
                                         <i class="fas fa-file-pdf nav-icon"></i>
                                         <p>Report</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="http://localhost/cycletime/reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
+                                    <a href="<?= env('BASE_URL') ?>preview-report" class="nav-link <?= $menu == 'PreviewReport' ? 'active' : '' ?>">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Preview Report</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= env('BASE_URL') ?>reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
                                         <i class="fas fa-clock nav-icon"></i>
                                         <p>Batch By Hour</p>
                                     </a>
@@ -178,57 +184,57 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="http://localhost/cycletime/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="http://localhost/cycletime/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="http://localhost/cycletime/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
-    <!-- <script src="http://localhost/cycletime/assets/plugins/chart.js/Chart.min.js"></script> -->
+    <!-- <script src="<?= env('BASE_URL') ?>assets/plugins/chart.js/Chart.min.js"></script> -->
     <!-- Sparkline -->
-    <!-- <script src="http://localhost/cycletime/assets/plugins/sparklines/sparkline.js"></script> -->
+    <!-- <script src="<?= env('BASE_URL') ?>assets/plugins/sparklines/sparkline.js"></script> -->
     <!-- JQVMap -->
-    <script src="http://localhost/cycletime/assets/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart -->
-    <!-- <script src="http://localhost/cycletime/assets/plugins/jquery-knob/jquery.knob.min.js"></script> -->
+    <!-- <script src="<?= env('BASE_URL') ?>assets/plugins/jquery-knob/jquery.knob.min.js"></script> -->
     <!-- daterangepicker -->
-    <script src="http://localhost/cycletime/assets/plugins/moment/moment.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/moment/moment.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="http://localhost/cycletime/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
-    <script src="http://localhost/cycletime/assets/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
-    <!-- <script src="http://localhost/cycletime/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
+    <!-- <script src="<?= env('BASE_URL') ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
     <!-- AdminLTE App -->
-    <script src="http://localhost/cycletime/assets/dist/js/adminlte.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/dist/js/adminlte.js"></script>
     <!-- DataTables  & Plugins -->
-    <script src="http://localhost/cycletime/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/jszip/jszip.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/jszip/jszip.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- Select2 -->
-    <script src="http://localhost/cycletime/assets/plugins/select2/js/select2.full.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/select2/js/select2.full.min.js"></script>
     <!-- InputMask -->
-    <!-- <script src="http://localhost/cycletime/assets/plugins/moment/moment.min.js"></script>
-    <script src="http://localhost/cycletime/assets/plugins/inputmask/jquery.inputmask.min.js"></script> -->
+    <!-- <script src="<?= env('BASE_URL') ?>assets/plugins/moment/moment.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/inputmask/jquery.inputmask.min.js"></script> -->
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="http://localhost/cycletime/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- date-range-picker -->
-    <script src="http://localhost/cycletime/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="<?= env('BASE_URL') ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- Custom Script -->
     <script>
         // Daterange
@@ -249,13 +255,13 @@
         // $('.timerange').inputmask('HH:MM', {
         //     'placeholder': 'hh:mm'
         // })
-        $('[data-mask]').inputmask()
+        // $('[data-mask]').inputmask()
         // Input Mask
         //time dd/mm/yyyy
         // $('#datetime').inputmask('HH:MM', {
         //     'placeholder': 'hh:mm'
         // })
-        $('[data-mask]').inputmask()
+        // $('[data-mask]').inputmask()
         // DataTable
         $("#table-button").DataTable({
             "lengthMenu": [

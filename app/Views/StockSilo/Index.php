@@ -30,7 +30,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
-                                    <form action="http://localhost/cycletime/stocksilo/print" method="GET" target="_blank">
+                                    <form action="<?= env('BASE_URL') ?>stocksilo/print" method="GET" target="_blank">
                                         <div class="row">
                                             <label for="">Silo</label>
                                             <div class="form-group ml-3">
