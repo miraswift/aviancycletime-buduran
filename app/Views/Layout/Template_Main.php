@@ -148,6 +148,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="<?= env('BASE_URL') ?>preview-stocksilo" class="nav-link <?= $menu == 'PreviewStockSilo' ? 'active' : '' ?>">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Preview Stock Silo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="<?= env('BASE_URL') ?>reportbyhour" class="nav-link <?= $menu == 'ReportByHour' ? 'active' : '' ?>">
                                         <i class="fas fa-clock nav-icon"></i>
                                         <p>Batch By Hour</p>

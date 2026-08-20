@@ -31,3 +31,5 @@ $routes->get('/preview-report', 'PreviewReport::index');
 // Cek SPK
 $routes->get('/cek-spk', 'CekSpk::index');
 $routes->post('/cek-spk/create', 'CekSpk::create');
+// Preview Stock Silo
+$routes->get('/preview-stocksilo', 'PreviewStockSilo::index');
