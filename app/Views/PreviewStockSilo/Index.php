@@ -77,10 +77,15 @@
                                         $no = 1;
                                         $stok_in = 0;
                                         $stok_out = 0;
+                                        $currentStok = $controller->getStockByCode($silo);
+
                                         foreach ($stoks as $stok): ?>
                                             <?php
-                                            $stok['status'] == 'IN' ? $stok_in += (int)$stok['value'] : $stok_in += 0;
-                                            $stok['status'] == 'OUT' ? $stok_out += (int)$stok['value'] : $stok_out += 0;
+                                            if ($no > 1) {
+                                                $stok['status'] == 'IN' ? $stok_in += (int)$stok['value'] : $stok_in += 0;
+                                                $stok['status'] == 'OUT' ? $stok_out += (int)$stok['value'] : $stok_out += 0;
+                                            }
+
                                             ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
@@ -88,7 +93,15 @@
                                                 <td class="border-l text-center"><?= $stok['number'] ?></td>
                                                 <td class="border-l text-center"><?= $stok['status'] == 'IN' ? $stok['value'] : '-' ?></td>
                                                 <td class="border-l text-center"><?= $stok['status'] == 'OUT' ? ($stok['value'] / 2) : '-' ?></td>
-                                                <td class="border-l text-center"><?= $stok_in - ($stok_out / 2) ?></td>
+                                                <td class="border-l text-center">
+                                                    <?php
+                                                    if ($no == 2) {
+                                                        echo $currentStok;
+                                                    } else {
+                                                        echo $currentStok + (($stok_out / 2) - $stok_in);
+                                                    }
+                                                    ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>

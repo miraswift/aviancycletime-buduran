@@ -47,7 +47,7 @@ class StockSiloModel extends Model
         $sql2 = $query2->getCompiledSelect();
 
         // Gabungkan SQL secara manual dan beri ORDER BY di paling luar
-        $finalSql = "($sql1) UNION ($sql2) ORDER BY timestamp ASC";
+        $finalSql = "($sql1) UNION ($sql2) ORDER BY timestamp DESC";
 
         return $this->db->query($finalSql)->getResultArray();
     }
