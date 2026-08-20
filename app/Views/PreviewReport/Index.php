@@ -70,7 +70,10 @@
                                             <th>Tgl/Jam</th>
                                             <th>SPK</th>
                                             <th>Batch</th>
+                                            <th>Feeding Time</th>
                                             <th>Mix Time</th>
+                                            <th>Discharge Time</th>
+                                            <th>Cycle Time</th>
                                             <th>1101</th>
                                             <th>1102</th>
                                             <th>1103</th>
@@ -100,6 +103,10 @@
                                                 $dosingData[$row['no_batch']][$row['name_equipment']][$row['line_equipment']] = $row['actual_equipment'];
 
                                                 $durationData[$row['no_batch']][$strName] = $row['duration_equipment'];
+
+                                                if ($row['type_equipment'] == 'DOSSING' && $row['status_equipment'] == 'ON') {
+                                                    // Save dossing first;
+                                                }
                                             }
 
                                             // dd($durationData);
@@ -129,6 +136,36 @@
                                                 $totalMat = $mat1101 + $mat1102 + $mat1103 + $mat1104 + $mat1201 + $mat1202 + $mat2203 + $mat2204 + $mat2205;
 
                                                 $mixingTime = $durationData[$no_batch]['MIXING'] ?? '00:00:00';
+
+                                                $weighingDischargeTime = $durationData[$no_batch]['WEIGHING DISCHARGE'] ?? '00:00:30';
+
+                                                $underhopperDischargeTime = $durationData[$no_batch]['UNDERHOPPER DISCHARGE'] ?? '00:00:40';
+
+                                                $feedingTime = '00:00:00';
+
+                                                foreach ($durationData[$no_batch] ?? [] as $name => $duration) {
+                                                    if (stripos($name, 'FEEDING') !== false && $duration > $feedingTime) {
+                                                        $feedingTime = $duration;
+                                                    }
+                                                }
+
+                                                $totalSecondsDischargeTime =
+                                                    strtotime($weighingDischargeTime) -
+                                                    strtotime('00:00:00') +
+                                                    strtotime($underhopperDischargeTime) -
+                                                    strtotime('00:00:00');
+
+                                                $dischargeTime = gmdate('H:i:s', $totalSecondsDischargeTime);
+
+                                                $totalSecondsCycletime =
+                                                    strtotime($weighingDischargeTime) -
+                                                    strtotime('00:00:00') +
+                                                    strtotime($underhopperDischargeTime) -
+                                                    strtotime('00:00:00') +
+                                                    strtotime($feedingTime) -
+                                                    strtotime('00:00:00');
+
+                                                $cycleTime = gmdate('H:i:s', $totalSecondsCycletime);
                                                 ?>
 
                                                 <?php if ($totalMat > 0): ?>
@@ -137,7 +174,10 @@
                                                         <td><?= $batch['created_at'] ?></td>
                                                         <td><?= $batch['no_spk'] ?></td>
                                                         <td><?= $batch['no_batch'] ?></td>
+                                                        <td><?= $feedingTime ?></td>
                                                         <td><?= $mixingTime ?></td>
+                                                        <td><?= $dischargeTime ?></td>
+                                                        <td><?= $cycleTime ?></td>
                                                         <td><?= $mat1101 ?></td>
                                                         <td><?= $mat1102  ?></td>
                                                         <td><?= $mat1103  ?></td>

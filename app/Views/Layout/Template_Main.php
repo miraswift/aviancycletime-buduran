@@ -304,7 +304,7 @@
                 [10, 25, 50, 100, "All"]
             ],
             "paging": true,
-            "responsive": true,
+            "responsive": false,
             "lengthChange": false,
             "autoWidth": false,
             'footer': true,
