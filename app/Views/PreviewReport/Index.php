@@ -72,8 +72,9 @@
                                             <th>SPK</th>
                                             <th>Batch</th>
                                             <th>Feeding Time</th>
+                                            <th>Discharge Weigh</th>
                                             <th>Mix Time</th>
-                                            <th>Discharge Time</th>
+                                            <th>Discharge UH</th>
                                             <th>Cycle Time</th>
                                             <th>1101</th>
                                             <th>1102</th>
@@ -138,7 +139,7 @@
 
                                                 $mixingTime = $durationData[$no_batch]['MIXING'] ?? '00:00:00';
 
-                                                $weighingDischargeTime = $durationData[$no_batch]['WEIGHING DISCHARGE'] ?? '00:00:30';
+                                                // $weighingDischargeTime = $durationData[$no_batch]['WEIGHING DISCHARGE'] ?? '00:00:30';
 
                                                 $underhopperDischargeTime = $durationData[$no_batch]['UNDERHOPPER DISCHARGE'] ?? '00:00:40';
 
@@ -147,6 +148,14 @@
                                                 foreach ($durationData[$no_batch] ?? [] as $name => $duration) {
                                                     if (stripos($name, 'FEEDING') !== false && $duration > $feedingTime) {
                                                         $feedingTime = $duration;
+                                                    }
+                                                }
+
+                                                $weighingDischargeTime = '00:00:30';
+
+                                                foreach ($durationData[$no_batch] ?? [] as $name => $duration) {
+                                                    if (stripos($name, 'WEIGHING DISCHARGE') !== false && $duration > $weighingDischargeTime) {
+                                                        $weighingDischargeTime = $duration;
                                                     }
                                                 }
 
@@ -177,8 +186,9 @@
                                                         <td><?= $batch['no_spk'] ?></td>
                                                         <td><?= $batch['no_batch'] ?></td>
                                                         <td><?= $feedingTime ?></td>
+                                                        <td><?= $weighingDischargeTime ?></td>
                                                         <td><?= $mixingTime ?></td>
-                                                        <td><?= $dischargeTime ?></td>
+                                                        <td><?= $underhopperDischargeTime ?></td>
                                                         <td><?= $cycleTime ?></td>
                                                         <td><?= $mat1101 ?></td>
                                                         <td><?= $mat1102  ?></td>
