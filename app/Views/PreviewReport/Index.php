@@ -118,22 +118,27 @@
                                             $mat2204 = ($dosingData[$no_batch]["FEEDING KALSIUM"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING KALSIUM"]["L2"] ?? 0);
 
                                             $mat2205 = ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L2"] ?? 0);
+
+                                            $totalMat = $mat1101 + $mat1102 + $mat1103 + $mat1104 + $mat1201 + $mat1202 + $mat2203 + $mat2204 + $mat2205;
                                             ?>
-                                            <tr>
-                                                <td><?= $no++; ?></td>
-                                                <td><?= $batch['created_at'] ?></td>
-                                                <td><?= $batch['no_spk'] ?></td>
-                                                <td><?= $batch['no_batch'] ?></td>
-                                                <td><?= $mat1101 ?></td>
-                                                <td><?= $mat1102  ?></td>
-                                                <td><?= $mat1103  ?></td>
-                                                <td><?= $mat1104  ?></td>
-                                                <td><?= $mat1201  ?></td>
-                                                <td><?= $mat1202  ?></td>
-                                                <td><?= $mat2203  ?></td>
-                                                <td><?= $mat2204  ?></td>
-                                                <td><?= $mat2205  ?></td>
-                                            </tr>
+
+                                            <?php if ($totalMat > 0): ?>
+                                                <tr>
+                                                    <td><?= $no++; ?></td>
+                                                    <td><?= $batch['created_at'] ?></td>
+                                                    <td><?= $batch['no_spk'] ?></td>
+                                                    <td><?= $batch['no_batch'] ?></td>
+                                                    <td><?= $mat1101 ?></td>
+                                                    <td><?= $mat1102  ?></td>
+                                                    <td><?= $mat1103  ?></td>
+                                                    <td><?= $mat1104  ?></td>
+                                                    <td><?= $mat1201  ?></td>
+                                                    <td><?= $mat1202  ?></td>
+                                                    <td><?= $mat2203  ?></td>
+                                                    <td><?= $mat2204  ?></td>
+                                                    <td><?= $mat2205  ?></td>
+                                                </tr>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
