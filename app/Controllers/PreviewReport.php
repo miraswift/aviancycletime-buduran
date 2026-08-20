@@ -32,6 +32,7 @@ class PreviewReport extends BaseController
         $data['menu'] = 'PreviewReport';
         $data['dateFrom'] = $dateFrom;
         $data['dateTo'] = $dateTo;
+        $data['no_spk'] = $no_spk;
 
         $data['spks'] = $this->equipmentModel->getSpkGroupAll();
         $data['batchs'] = $this->equipmentModel->getBatchNumberGroupByDateSpk($dateFrom, $dateTo, $no_spk);

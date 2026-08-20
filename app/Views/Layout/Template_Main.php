@@ -119,7 +119,7 @@
                                 </p>
                             </a>
                         </li> -->
-                        <li class="nav-item <?= $menuGroup == 'ReportProduksi' ? 'menu-open' : '' ?>">
+                        <li class="nav-item menu-open">
                             <a href="http://localhost/cycletime#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-box-open"></i>
                                 <p>

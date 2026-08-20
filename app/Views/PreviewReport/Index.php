@@ -34,10 +34,10 @@
                                         <div class="row">
                                             <label>SPK:</label>
                                             <div class="form-group">
-                                                <select name="no_spk" id="" class="form-control select2bs41">
+                                                <select name="no_spk" id="" class="form-control select2bs4">
                                                     <option value="all">Semua</option>
                                                     <?php foreach ($spks as $spk): ?>
-                                                        <option value="<?= $spk['no_spk'] ?>"><?= $spk['no_spk'] ?></option>
+                                                        <option value="<?= $spk['no_spk'] ?>" <?= $spk['no_spk'] == $no_spk ? 'selected' : '' ?>><?= $spk['no_spk'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -83,72 +83,74 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        $no = 1;
-
-                                        $batchNumbers = array_column($batchs, 'no_batch');
-                                        // dd($batchs);
-                                        $rawDosingData = $equipmentModel->getActualDosingByBatches($batchNumbers);
-
-                                        $dosingData = [];
-                                        $durationData = [];
-
-                                        foreach ($rawDosingData as $row) {
-                                            $strName = trim(preg_replace('/\s*\d+\s*$/', '', $row['name_equipment']));
-
-                                            $dosingData[$row['no_batch']][$row['name_equipment']][$row['line_equipment']] = $row['actual_equipment'];
-
-                                            $durationData[$row['no_batch']][$strName] = $row['duration_equipment'];
-                                        }
-
-                                        // dd($durationData);
-
-                                        foreach ($batchs as $batch): ?>
+                                        <?php if ($batchs): ?>
                                             <?php
-                                            $no_batch = $batch['no_batch'];
+                                            $no = 1;
 
-                                            $mat1101 = $dosingData[$no_batch]["FEEDING PASIR SEDANG"]["L1"] ?? 0;
+                                            $batchNumbers = array_column($batchs, 'no_batch');
+                                            // dd($batchs);
+                                            $rawDosingData = $equipmentModel->getActualDosingByBatches($batchNumbers);
 
-                                            $mat1102 = $dosingData[$no_batch]["FEEDING PASIR HALUS"]["L1"] ?? 0;
+                                            $dosingData = [];
+                                            $durationData = [];
 
-                                            $mat1103 = $dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1"] ?? 0;
+                                            foreach ($rawDosingData as $row) {
+                                                $strName = trim(preg_replace('/\s*\d+\s*$/', '', $row['name_equipment']));
 
-                                            $mat1104 = $dosingData[$no_batch]["FEEDING KALSIUM"]["L1"] ?? 0;
+                                                $dosingData[$row['no_batch']][$row['name_equipment']][$row['line_equipment']] = $row['actual_equipment'];
 
-                                            $mat1201 = $dosingData[$no_batch]["FEEDING PASIR KASAR"]["L1-2"] ?? 0;
+                                                $durationData[$row['no_batch']][$strName] = $row['duration_equipment'];
+                                            }
 
-                                            $mat1202 = $dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0;
+                                            // dd($durationData);
 
-                                            $mat2203 = ($dosingData[$no_batch]["FEEDING SEMEN ABU"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING SEMEN ABU"]["L2"] ?? 0);
+                                            foreach ($batchs as $batch): ?>
+                                                <?php
+                                                $no_batch = $batch['no_batch'];
 
-                                            $mat2204 = ($dosingData[$no_batch]["FEEDING KALSIUM"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING KALSIUM"]["L2"] ?? 0);
+                                                $mat1101 = $dosingData[$no_batch]["FEEDING PASIR SEDANG"]["L1"] ?? 0;
 
-                                            $mat2205 = ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L2"] ?? 0);
+                                                $mat1102 = $dosingData[$no_batch]["FEEDING PASIR HALUS"]["L1"] ?? 0;
 
-                                            $totalMat = $mat1101 + $mat1102 + $mat1103 + $mat1104 + $mat1201 + $mat1202 + $mat2203 + $mat2204 + $mat2205;
+                                                $mat1103 = $dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1"] ?? 0;
 
-                                            $mixingTime = $durationData[$no_batch]['MIXING'] ?? '00:00:00';
-                                            ?>
+                                                $mat1104 = $dosingData[$no_batch]["FEEDING KALSIUM"]["L1"] ?? 0;
 
-                                            <?php if ($totalMat > 0): ?>
-                                                <tr>
-                                                    <td><?= $no++; ?></td>
-                                                    <td><?= $batch['created_at'] ?></td>
-                                                    <td><?= $batch['no_spk'] ?></td>
-                                                    <td><?= $batch['no_batch'] ?></td>
-                                                    <td><?= $mixingTime ?></td>
-                                                    <td><?= $mat1101 ?></td>
-                                                    <td><?= $mat1102  ?></td>
-                                                    <td><?= $mat1103  ?></td>
-                                                    <td><?= $mat1104  ?></td>
-                                                    <td><?= $mat1201  ?></td>
-                                                    <td><?= $mat1202  ?></td>
-                                                    <td><?= $mat2203  ?></td>
-                                                    <td><?= $mat2204  ?></td>
-                                                    <td><?= $mat2205  ?></td>
-                                                </tr>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
+                                                $mat1201 = $dosingData[$no_batch]["FEEDING PASIR KASAR"]["L1-2"] ?? 0;
+
+                                                $mat1202 = $dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0;
+
+                                                $mat2203 = ($dosingData[$no_batch]["FEEDING SEMEN ABU"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING SEMEN ABU"]["L2"] ?? 0);
+
+                                                $mat2204 = ($dosingData[$no_batch]["FEEDING KALSIUM"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING KALSIUM"]["L2"] ?? 0);
+
+                                                $mat2205 = ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L2"] ?? 0);
+
+                                                $totalMat = $mat1101 + $mat1102 + $mat1103 + $mat1104 + $mat1201 + $mat1202 + $mat2203 + $mat2204 + $mat2205;
+
+                                                $mixingTime = $durationData[$no_batch]['MIXING'] ?? '00:00:00';
+                                                ?>
+
+                                                <?php if ($totalMat > 0): ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $batch['created_at'] ?></td>
+                                                        <td><?= $batch['no_spk'] ?></td>
+                                                        <td><?= $batch['no_batch'] ?></td>
+                                                        <td><?= $mixingTime ?></td>
+                                                        <td><?= $mat1101 ?></td>
+                                                        <td><?= $mat1102  ?></td>
+                                                        <td><?= $mat1103  ?></td>
+                                                        <td><?= $mat1104  ?></td>
+                                                        <td><?= $mat1201  ?></td>
+                                                        <td><?= $mat1202  ?></td>
+                                                        <td><?= $mat2203  ?></td>
+                                                        <td><?= $mat2204  ?></td>
+                                                        <td><?= $mat2205  ?></td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>

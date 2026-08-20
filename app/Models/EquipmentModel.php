@@ -51,7 +51,7 @@ class EquipmentModel extends Model
             $this->where('no_spk', $no_spk);
         }
         $this->groupBy('no_batch');
-        $this->orderBy('no_batch', 'DESC');
+        $this->orderBy('created_at', 'DESC');
 
         return $this->findAll();
     }
