@@ -28,3 +28,6 @@ $routes->get('/reportbyhour', 'ReportByHour::index');
 $routes->get('/reportbyhour/(:any)', 'ReportByHour::print/$1');
 // Preview Report
 $routes->get('/preview-report', 'PreviewReport::index');
+// Cek SPK
+$routes->get('/cek-spk', 'CekSpk::index');
+$routes->post('/cek-spk/create', 'CekSpk::create');
