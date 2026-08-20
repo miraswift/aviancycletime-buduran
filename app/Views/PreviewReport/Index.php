@@ -70,6 +70,7 @@
                                             <th>Tgl/Jam</th>
                                             <th>SPK</th>
                                             <th>Batch</th>
+                                            <th>Mix Time</th>
                                             <th>1101</th>
                                             <th>1102</th>
                                             <th>1103</th>
@@ -90,12 +91,17 @@
                                         $rawDosingData = $equipmentModel->getActualDosingByBatches($batchNumbers);
 
                                         $dosingData = [];
+                                        $durationData = [];
 
                                         foreach ($rawDosingData as $row) {
+                                            $strName = trim(preg_replace('/\s*\d+\s*$/', '', $row['name_equipment']));
+
                                             $dosingData[$row['no_batch']][$row['name_equipment']][$row['line_equipment']] = $row['actual_equipment'];
+
+                                            $durationData[$row['no_batch']][$strName] = $row['duration_equipment'];
                                         }
 
-                                        // dd($dosingData);
+                                        // dd($durationData);
 
                                         foreach ($batchs as $batch): ?>
                                             <?php
@@ -120,6 +126,8 @@
                                             $mat2205 = ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L2"] ?? 0);
 
                                             $totalMat = $mat1101 + $mat1102 + $mat1103 + $mat1104 + $mat1201 + $mat1202 + $mat2203 + $mat2204 + $mat2205;
+
+                                            $mixingTime = $durationData[$no_batch]['MIXING'] ?? '00:00:00';
                                             ?>
 
                                             <?php if ($totalMat > 0): ?>
@@ -128,6 +136,7 @@
                                                     <td><?= $batch['created_at'] ?></td>
                                                     <td><?= $batch['no_spk'] ?></td>
                                                     <td><?= $batch['no_batch'] ?></td>
+                                                    <td><?= $mixingTime ?></td>
                                                     <td><?= $mat1101 ?></td>
                                                     <td><?= $mat1102  ?></td>
                                                     <td><?= $mat1103  ?></td>

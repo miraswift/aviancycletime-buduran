@@ -111,14 +111,14 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="<?= env('BASE_URL') ?>stocksilo/index" class="nav-link <?= $menu == 'StockSilo' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-truck-loading"></i>
                                 <p>
                                     Stock Silo
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item <?= $menuGroup == 'ReportProduksi' ? 'menu-open' : '' ?>">
                             <a href="http://localhost/cycletime#" class="nav-link <?= $menuGroup == 'ReportProduksi' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-box-open"></i>
@@ -135,22 +135,22 @@
                                         <p>Cycle Time</p>
                                     </a>
                                 </li> -->
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="<?= env('BASE_URL') ?>report" class="nav-link <?= $menu == 'Report' ? 'active' : '' ?>">
                                         <i class="fas fa-file-pdf nav-icon"></i>
                                         <p>Report</p>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a href="<?= env('BASE_URL') ?>preview-report" class="nav-link <?= $menu == 'PreviewReport' ? 'active' : '' ?>">
                                         <i class="fas fa-list nav-icon"></i>
-                                        <p>Preview Report</p>
+                                        <p>Report</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= env('BASE_URL') ?>preview-stocksilo" class="nav-link <?= $menu == 'PreviewStockSilo' ? 'active' : '' ?>">
                                         <i class="fas fa-list nav-icon"></i>
-                                        <p>Preview Stock Silo</p>
+                                        <p>Stock Silo</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
