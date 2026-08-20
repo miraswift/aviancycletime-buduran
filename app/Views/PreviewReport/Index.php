@@ -68,6 +68,7 @@
                                         <tr>
                                             <th class="text-center">No</th>
                                             <th>Tgl/Jam</th>
+                                            <th>Prd</th>
                                             <th>SPK</th>
                                             <th>Batch</th>
                                             <th>Feeding Time</th>
@@ -172,6 +173,7 @@
                                                     <tr>
                                                         <td><?= $no++; ?></td>
                                                         <td><?= $batch['created_at'] ?></td>
+                                                        <td><?= $batch['code_formula'] ?></td>
                                                         <td><?= $batch['no_spk'] ?></td>
                                                         <td><?= $batch['no_batch'] ?></td>
                                                         <td><?= $feedingTime ?></td>
