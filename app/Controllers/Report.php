@@ -17,6 +17,8 @@ class Report extends BaseController
 
     public function index()
     {
+        return redirect()->to('/preview-report');
+
         $daterange = $this->request->getVar('daterange');
 
         if ($daterange) {
