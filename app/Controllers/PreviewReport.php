@@ -16,6 +16,7 @@ class PreviewReport extends BaseController
     public function index()
     {
         $no_spk = $this->request->getGet('no_spk') ?? 'all';
+        $mixer = $this->request->getGet('mixer') ?? 'all';
         $daterange = $this->request->getGet('daterange');
 
         if ($daterange) {
@@ -33,9 +34,10 @@ class PreviewReport extends BaseController
         $data['dateFrom'] = $dateFrom;
         $data['dateTo'] = $dateTo;
         $data['no_spk'] = $no_spk;
+        $data['mixer'] = $mixer;
 
         $data['spks'] = $this->equipmentModel->getSpkGroupAll();
-        $data['batchs'] = $this->equipmentModel->getBatchNumberGroupByDateSpk($dateFrom, $dateTo, $no_spk);
+        $data['batchs'] = $this->equipmentModel->getBatchNumberGroupByDateSpk($dateFrom, $dateTo, $no_spk, $mixer);
         // Models
         $data['equipmentModel'] = $this->equipmentModel;
 

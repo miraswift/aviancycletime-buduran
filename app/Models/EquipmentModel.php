@@ -43,12 +43,19 @@ class EquipmentModel extends Model
         return $this->findAll();
     }
 
-    public function getBatchNumberGroupByDateSpk($dateFrom, $dateTo, $no_spk)
+    public function getBatchNumberGroupByDateSpk($dateFrom, $dateTo, $no_spk, $mixer)
     {
         $this->where('DATE(created_at) >=', $dateFrom);
         $this->where('DATE(created_at) <=', $dateTo);
         if ($no_spk != 'all') {
             $this->where('no_spk', $no_spk);
+        }
+        if ($mixer != 'all') {
+            if ($mixer == 1) {
+                $this->where('line_equipment !=', 'L2');
+            } else if ($mixer == 2) {
+                $this->where('line_equipment', 'L2');
+            }
         }
         $this->groupBy('no_batch');
         $this->orderBy('created_at', 'DESC');

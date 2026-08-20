@@ -41,6 +41,14 @@
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
+                                            <label class="ml-3">Mixer:</label>
+                                            <div class="form-group">
+                                                <select name="mixer" id="" class="form-control select2bs4">
+                                                    <option value="all">Semua</option>
+                                                    <option value="1" <?= 1 == $mixer ? 'selected' : '' ?>>Mixer 1</option>
+                                                    <option value="2" <?= 2 == $mixer ? 'selected' : '' ?>>Mixer 2</option>
+                                                </select>
+                                            </div>
                                             <label class="ml-3">Date range:</label>
                                             <div class="form-group ml-3">
                                                 <div class="input-group">
