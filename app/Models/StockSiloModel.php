@@ -37,7 +37,7 @@ class StockSiloModel extends Model
 
         // 2. Buat query kedua tanpa get()
         $query2 = $this->db->table('tb_stock_silo')
-            ->select("DATE(created_at) AS date, TIME(created_at AS time, '-' AS number, val_stock_silo AS value, 'IN' AS status, ADDTIME(DATE(created_at), TIME(created_at) AS timestamp")
+            ->select("DATE(created_at) AS date, TIME(created_at) AS time, '-' AS number, val_stock_silo AS value, 'IN' AS status, ADDTIME(DATE(created_at), TIME(created_at) AS timestamp")
             ->where('code_stock_silo', $code)
             ->where('DATE(created_at) >=', $dateFrom)
             ->where('DATE(created_at) <=', $dateTo);
