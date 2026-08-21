@@ -96,9 +96,9 @@
                                                 <td class="border-l text-center">
                                                     <?php
                                                     if ($no == 2) {
-                                                        echo $currentStok;
+                                                        echo number_format($currentStok, 0, ',', '.');
                                                     } else {
-                                                        echo $currentStok + (($stok_out / 2) - $stok_in);
+                                                        echo number_format($currentStok + (($stok_out / 2) - $stok_in), 0, ',', '.');
                                                     }
                                                     ?>
                                                 </td>
