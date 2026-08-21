@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CekSpkModel;
 use App\Models\EquipmentModel;
 use App\Models\PlantModel;
 use App\Models\StockSiloModel;
@@ -13,12 +14,14 @@ class StockSilo extends BaseController
 {
     protected $stockSiloModel;
     protected $equipmentModel;
+    protected $cekSpkModel;
 
     public function __construct()
     {
         $this->plantModel = new PlantModel();
         $this->stockSiloModel = new StockSiloModel();
         $this->equipmentModel = new EquipmentModel();
+        $this->cekSpkModel = new CekSpkModel();
     }
 
     public function index()
@@ -34,6 +37,9 @@ class StockSilo extends BaseController
 
     public function get()
     {
+        $cekSpk1 = $this->cekSpkModel->where('mixer', 1)->orderBy('created_at', 'DESC')->first();
+        $cekSpk2 = $this->cekSpkModel->where('mixer', 2)->orderBy('created_at', 'DESC')->first();
+
         $dataStock = [
             "1101" => $this->getStockByCode("1101"),
             "1102" => $this->getStockByCode("1102"),
@@ -47,6 +53,8 @@ class StockSilo extends BaseController
             "2203" => $this->getStockByCode("2203"),
             "2204" => $this->getStockByCode("2204"),
             "2205" => $this->getStockByCode("2205"),
+            "status1" => $cekSpk1 ? $cekSpk1['status_cek_spk'] : "NO",
+            "status2" => $cekSpk2 ? $cekSpk2['status_cek_spk'] : "NO",
         ];
 
         return $this->response->setStatusCode(200)->setJSON($dataStock);
