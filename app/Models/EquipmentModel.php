@@ -11,7 +11,7 @@ class EquipmentModel extends Model
 
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['id_plant', 'type_equipment', 'no_spk', 'no_batch', 'code_formula', 'name_equipment', 'status_equipment', 'line_equipment', 'date_equipment', 'time_equipment', 'duration_equipment', 'target_equipment', 'actual_equipment', 'deleted_at'];
+    protected $allowedFields = ['id_plant', 'type_equipment', 'no_spk', 'no_batch', 'code_formula', 'name_equipment', 'status_equipment', 'line_equipment', 'date_equipment', 'time_equipment', 'duration_equipment', 'target_equipment', 'actual_equipment', 'deleted_at', 'is_adjusted'];
 
     protected $useTimestamps = true;
 

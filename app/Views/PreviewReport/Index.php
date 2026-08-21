@@ -105,12 +105,15 @@
                                             $rawDosingData = $equipmentModel->getActualDosingByBatches($batchNumbers);
 
                                             $dosingData = [];
+                                            $adjustDosingData = [];
                                             $durationData = [];
 
                                             foreach ($rawDosingData as $row) {
                                                 $strName = trim(preg_replace('/\s*\d+\s*$/', '', $row['name_equipment']));
 
                                                 $dosingData[$row['no_batch']][$row['name_equipment']][$row['line_equipment']] = $row['actual_equipment'];
+
+                                                $adjustDosingData[$row['no_batch']][$row['name_equipment']][$row['line_equipment']] = $row['is_adjusted'];
 
                                                 $durationData[$row['no_batch']][$strName] = $row['duration_equipment'];
 
@@ -142,6 +145,24 @@
                                                 $mat2204 = ($dosingData[$no_batch]["FEEDING KALSIUM"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING KALSIUM"]["L2"] ?? 0);
 
                                                 $mat2205 = ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0) + ($dosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L2"] ?? 0);
+
+                                                $adjustMat1101 = $adjustDosingData[$no_batch]["FEEDING PASIR SEDANG"]["L1"] ?? 0;
+
+                                                $adjustMat1102 = $adjustDosingData[$no_batch]["FEEDING PASIR HALUS"]["L1"] ?? 0;
+
+                                                $adjustMat1103 = $adjustDosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1"] ?? 0;
+
+                                                $adjustMat1104 = $adjustDosingData[$no_batch]["FEEDING KALSIUM"]["L1"] ?? 0;
+
+                                                $adjustMat1201 = $adjustDosingData[$no_batch]["FEEDING PASIR KASAR"]["L1-2"] ?? 0;
+
+                                                $adjustMat1202 = $adjustDosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0;
+
+                                                $adjustMat2203 = ($adjustDosingData[$no_batch]["FEEDING SEMEN ABU"]["L1-2"] ?? 0);
+
+                                                $adjustMat2204 = ($adjustDosingData[$no_batch]["FEEDING KALSIUM"]["L1-2"] ?? 0);
+
+                                                $adjustMat2205 = ($adjustDosingData[$no_batch]["FEEDING SEMEN PUTIH"]["L1-2"] ?? 0);
 
                                                 $totalMat = $mat1101 + $mat1102 + $mat1103 + $mat1104 + $mat1201 + $mat1202 + $mat2203 + $mat2204 + $mat2205;
 
@@ -198,15 +219,23 @@
                                                         <td><?= $mixingTime ?></td>
                                                         <td><?= $underhopperDischargeTime ?></td>
                                                         <td><?= $cycleTime ?></td>
-                                                        <td><?= $mat1101 > 0 ? $mat1101 : "<a href='#' data-toggle='modal' data-target='#modal1101$no_batch'>$mat1101</a>" ?></td>
-                                                        <td><?= $mat1102  > 0 ? $mat1102 : "<a href='#' data-toggle='modal' data-target='#modal1102$no_batch'>$mat1102</a>" ?></td>
-                                                        <td><?= $mat1103  > 0 ? $mat1103 : "<a href='#' data-toggle='modal' data-target='#modal1103$no_batch'>$mat1103</a>" ?></td>
-                                                        <td><?= $mat1104  > 0 ? $mat1104 : "<a href='#' data-toggle='modal' data-target='#modal1104$no_batch'>$mat1104</a>" ?></td>
-                                                        <td><?= $mat1201  > 0 ? $mat1201 : "<a href='#' data-toggle='modal' data-target='#modal1201$no_batch'>$mat1201</a>" ?></td>
-                                                        <td><?= $mat1202  > 0 ? $mat1202 : "<a href='#' data-toggle='modal' data-target='#modal1202$no_batch'>$mat1202</a>" ?></td>
-                                                        <td><?= $mat2203  > 0 ? $mat2203 : "<a href='#' data-toggle='modal' data-target='#modal2203$no_batch'>$mat2203</a>" ?></td>
-                                                        <td><?= $mat2204  > 0 ? $mat2204 : "<a href='#' data-toggle='modal' data-target='#modal2204$no_batch'>$mat2204</a>" ?></td>
-                                                        <td><?= $mat2205  > 0 ? $mat2205 : "<a href='#' data-toggle='modal' data-target='#modal2205$no_batch'>$mat2205</a>" ?></td>
+                                                        <td><?= $mat1101 == 0 || $adjustMat1101 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal1101$no_batch'>$mat1101</a>" : $mat1101 ?></td>
+
+                                                        <td><?= $mat1102 == 0 || $adjustMat1102 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal1102$no_batch'>$mat1102</a>" : $mat1102 ?></td>
+
+                                                        <td><?= $mat1103 == 0 || $adjustMat1103 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal1103$no_batch'>$mat1103</a>" : $mat1103 ?></td>
+
+                                                        <td><?= $mat1104 == 0 || $adjustMat1104 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal1104$no_batch'>$mat1104</a>" : $mat1104 ?></td>
+
+                                                        <td><?= $mat1201 == 0 || $adjustMat1201 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal1201$no_batch'>$mat1201</a>" : $mat1201 ?></td>
+
+                                                        <td><?= $mat1202 == 0 || $adjustMat1202 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal1202$no_batch'>$mat1202</a>" : $mat1202 ?></td>
+
+                                                        <td><?= $mat2203 == 0 || $adjustMat2203 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal2203$no_batch'>$mat2203</a>" : $mat2203 ?></td>
+
+                                                        <td><?= $mat2204 == 0 || $adjustMat2204 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal2204$no_batch'>$mat2204</a>" : $mat2204 ?></td>
+
+                                                        <td><?= $mat2205 == 0 || $adjustMat2205 == 1 ? "<a href='#' data-toggle='modal' data-target='#modal2205$no_batch'>$mat2205</a>" : $mat2205 ?></td>
                                                     </tr>
                                                 <?php endif; ?>
                                                 <!-- Modal 1101 -->
@@ -251,7 +280,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat1101 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>
@@ -309,7 +338,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat1102 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>
@@ -367,7 +396,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat1103 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>
@@ -425,7 +454,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat1104 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>
@@ -483,7 +512,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat1201 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>
@@ -541,7 +570,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat1202 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>
@@ -599,7 +628,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat2203 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>
@@ -657,7 +686,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat2204 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>
@@ -715,7 +744,7 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="actual_equipment" class="col-form-label">Actual Feeding</label>
-                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= old('actual_equipment') ?>">
+                                                                                <input type="number" name="actual_equipment" id="actual_equipment" class="form-control <?= (validation_show_error('actual_equipment')) ? 'is-invalid' : '' ?>" value="<?= $mat2205 ?>">
                                                                                 <!-- Validation Error Msg -->
                                                                                 <div id="actual_equipment_error" class="invalid-feedback">
                                                                                     <?= validation_show_error('actual_equipment') ?>

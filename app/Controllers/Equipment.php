@@ -211,6 +211,7 @@ class Equipment extends BaseController
             $equipmentData = [
                 'id_equipment' => $equipment['id_equipment'],
                 'actual_equipment' => $vars['actual_equipment'],
+                'is_adjusted' => 1,
             ];
 
             $save = $this->equipmentModel->save($equipmentData);
@@ -239,6 +240,7 @@ class Equipment extends BaseController
                 'duration_equipment' => "00:00:00",
                 'target_equipment' => 0,
                 'actual_equipment' => $vars['actual_equipment'],
+                'is_adjusted' => 1,
             ];
 
             $save = $this->equipmentModel->save($equipmentData);
