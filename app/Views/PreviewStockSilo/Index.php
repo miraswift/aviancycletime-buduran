@@ -79,30 +79,43 @@
                                         $stok_out = 0;
                                         $currentStok = $controller->getStockByCode($silo);
 
+                                        $arrayNumbers = [];
+
                                         foreach ($stoks as $stok): ?>
                                             <?php
-                                            if ($no > 1) {
-                                                $stok['status'] == 'IN' ? $stok_in += (int)$stok['value'] : $stok_in += 0;
-                                                $stok['status'] == 'OUT' ? $stok_out += (int)$stok['value'] : $stok_out += 0;
-                                            }
+                                            $number = $stok['number'];
 
+                                            $ok = true;
                                             ?>
-                                            <tr>
-                                                <td><?= $no++ ?></td>
-                                                <td class="border-l text-center"><?= $stok['timestamp'] ?></td>
-                                                <td class="border-l text-center"><?= $stok['number'] ?></td>
-                                                <td class="border-l text-center"><?= $stok['status'] == 'IN' ? $stok['value'] : '-' ?></td>
-                                                <td class="border-l text-center"><?= $stok['status'] == 'OUT' ? ($stok['value'] / 2) : '-' ?></td>
-                                                <td class="border-l text-center">
-                                                    <?php
-                                                    if ($no == 2) {
-                                                        echo number_format($currentStok, 0, ',', '.');
-                                                    } else {
-                                                        echo number_format($currentStok + (($stok_out / 2) - $stok_in), 0, ',', '.');
-                                                    }
-                                                    ?>
-                                                </td>
-                                            </tr>
+
+                                            <?php if (!array_search($number, $arrayNumbers)): ?>
+                                                <?php
+                                                if ($no > 1) {
+                                                    $stok['status'] == 'IN' ? $stok_in += (int)$stok['value'] : $stok_in += 0;
+
+                                                    $stok['status'] == 'OUT' ? $stok_out += (int)$stok['value'] : $stok_out += 0;
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td><?= $no++ ?></td>
+                                                    <td class="border-l text-center"><?= $stok['timestamp'] ?></td>
+                                                    <td class="border-l text-center"><?= $stok['number'] ?></td>
+                                                    <td class="border-l text-center"><?= $stok['status'] == 'IN' ? $stok['value'] : '-' ?></td>
+                                                    <td class="border-l text-center"><?= $stok['status'] == 'OUT' ? ($stok['value']) : '-' ?></td>
+                                                    <td class="border-l text-center">
+                                                        <?php
+                                                        if ($no == 2) {
+                                                            echo number_format($currentStok, 0, ',', '.');
+                                                        } else {
+                                                            echo number_format($currentStok + (($stok_out) - $stok_in), 0, ',', '.');
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                                array_push($arrayNumbers, $number);
+                                                ?>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
