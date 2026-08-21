@@ -108,7 +108,7 @@ class PreviewStockSilo extends BaseController
                 $line_equipment = ["L1-2"];
                 break;
             case "1202":
-                $name_equipment = "FEEDING SEMEN PUTI";
+                $name_equipment = "FEEDING SEMEN PUTIH";
                 $line_equipment = ["L1-2"];
                 break;
             case "1203":
@@ -291,17 +291,17 @@ class PreviewStockSilo extends BaseController
                 "line" => ["L1-2"],
             ],
             [
-                "code" => "1203/2203",
+                "code" => "1203",
                 "name" => "FEEDING SEMEN ABU",
                 "line" => ["L1-2", "L2"],
             ],
             [
-                "code" => "1204/2204",
+                "code" => "1204",
                 "name" => "FEEDING KALSIUM",
                 "line" => ["L1-2", "L2"],
             ],
             [
-                "code" => "1205/2205",
+                "code" => "1205",
                 "name" => "FEEDING SEMEN PUTIH",
                 "line" => ["L1-2", "L2"],
             ],
