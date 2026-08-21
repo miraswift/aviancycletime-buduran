@@ -28,12 +28,12 @@ class StockSiloModel extends Model
     {
         // 1. Buat query pertama tanpa get()
         $query1 = $this->db->table('tb_equipment')
-            ->select("date_equipment AS date, time_equipment AS time, no_batch AS number, actual_equipment AS value, 'OUT' AS status, ADDTIME(date_equipment, time_equipment) AS timestamp")
+            ->select("DATE(created_at) AS date, TIME(created_at) AS time, no_batch AS number, actual_equipment AS value, 'OUT' AS status, ADDTIME(DATE(created_at), TIME(created_at)) AS timestamp")
             ->where('status_equipment', 'OFF')
             ->where('name_equipment', $name_equipment)
             ->whereIn('line_equipment', $line_equipment)
-            ->where('date_equipment >=', $dateFrom)
-            ->where('date_equipment <=', $dateTo);
+            ->where('DATE(created_at) >=', $dateFrom)
+            ->where('DATE(created_at) <=', $dateTo);
 
         // 2. Buat query kedua tanpa get()
         $query2 = $this->db->table('tb_stock_silo')
