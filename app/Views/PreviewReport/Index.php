@@ -103,10 +103,14 @@
                                             $batchNumbers = array_column($batchs, 'no_batch');
                                             // dd($batchs);
                                             $rawDosingData = $equipmentModel->getActualDosingByBatches($batchNumbers);
+                                            // $rawDosingDataNew = $logEquipmentModel->getActualDosingByBatches($batchNumbers);
 
                                             $dosingData = [];
                                             $adjustDosingData = [];
                                             $durationData = [];
+
+                                            // foreach ($rawDosingDataNew as $row) {
+                                            // }
 
                                             foreach ($rawDosingData as $row) {
                                                 $strName = trim(preg_replace('/\s*\d+\s*$/', '', $row['name_equipment']));

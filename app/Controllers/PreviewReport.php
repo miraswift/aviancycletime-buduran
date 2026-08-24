@@ -3,14 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\EquipmentModel;
+use App\Models\LogEquipmentModel;
 
 class PreviewReport extends BaseController
 {
     protected $equipmentModel;
+    protected $logEquipmentModel;
 
     public function __construct()
     {
         $this->equipmentModel = new EquipmentModel();
+        $this->logEquipmentModel = new LogEquipmentModel();
     }
 
     public function index()
@@ -41,6 +44,7 @@ class PreviewReport extends BaseController
         $data['batchs'] = $this->equipmentModel->getBatchNumberGroupByDateSpk($dateFrom, $dateTo, $no_spk, $mixer);
         // Models
         $data['equipmentModel'] = $this->equipmentModel;
+        $data['logEquipmentModel'] = $this->logEquipmentModel;
 
         return view('PreviewReport/Index', $data);
     }

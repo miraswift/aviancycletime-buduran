@@ -64,30 +64,33 @@ class Equipment extends BaseController
                 return $this->response->setStatusCode(400)->setJSON($result);
             } else {
                 // Duration
-                $duration_equipment = null;
+                $duration_equipment = '00:00:00';
 
                 if ($status_equipment == 'OFF') {
                     $equipmentOn = $this->equipmentModel->where('no_batch', $no_batch)->where('name_equipment', $name_equipment)->where('status_equipment', 'ON')->where('line_equipment', $line_equipment)->first();
-                    $equipmentTimeOn = $equipmentOn['date_equipment'] . " " . $equipmentOn['time_equipment'];
-                    $equipmentTimeOff = $date_equipment . " " . $time_equipment;
 
-                    $totalEquipmentTime = new DateTime('00:00:00');
-                    $cloneTotalEquipmentTime = clone $totalEquipmentTime;
-                    $equipmentTime1 = new DateTime(date("H:i:s", strtotime($equipmentTimeOn)));
-                    $equipmentTime2 = new DateTime(date("H:i:s", strtotime($equipmentTimeOff)));
-                    $equipmentTimeDiff = $equipmentTime1->diff($equipmentTime2);
-                    $totalEquipmentTime->add($equipmentTimeDiff);
+                    if ($equipmentOn) {
+                        $equipmentTimeOn = $equipmentOn['date_equipment'] . " " . $equipmentOn['time_equipment'];
+                        $equipmentTimeOff = $date_equipment . " " . $time_equipment;
 
-                    $intervalEquipmentTime = $cloneTotalEquipmentTime->diff($totalEquipmentTime);
+                        $totalEquipmentTime = new DateTime('00:00:00');
+                        $cloneTotalEquipmentTime = clone $totalEquipmentTime;
+                        $equipmentTime1 = new DateTime(date("H:i:s", strtotime($equipmentTimeOn)));
+                        $equipmentTime2 = new DateTime(date("H:i:s", strtotime($equipmentTimeOff)));
+                        $equipmentTimeDiff = $equipmentTime1->diff($equipmentTime2);
+                        $totalEquipmentTime->add($equipmentTimeDiff);
 
-                    $intervalTotalEquipmentTime = sprintf(
-                        "%02d:%02d:%02d",
-                        $intervalEquipmentTime->h + ($intervalEquipmentTime->d * 24), // jika interval lebih dari 1 hari, jam harus ditambah
-                        $intervalEquipmentTime->i,
-                        $intervalEquipmentTime->s
-                    );
+                        $intervalEquipmentTime = $cloneTotalEquipmentTime->diff($totalEquipmentTime);
 
-                    $duration_equipment = $intervalTotalEquipmentTime;
+                        $intervalTotalEquipmentTime = sprintf(
+                            "%02d:%02d:%02d",
+                            $intervalEquipmentTime->h + ($intervalEquipmentTime->d * 24), // jika interval lebih dari 1 hari, jam harus ditambah
+                            $intervalEquipmentTime->i,
+                            $intervalEquipmentTime->s
+                        );
+
+                        $duration_equipment = $intervalTotalEquipmentTime;
+                    }
                 }
 
                 $equipmentData = [
