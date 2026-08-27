@@ -102,15 +102,11 @@
 
                                             $batchNumbers = array_column($batchs, 'no_batch');
                                             // dd($batchs);
-                                            $rawDosingData = $equipmentModel->getActualDosingByBatches($batchNumbers);
-                                            // $rawDosingDataNew = $logEquipmentModel->getActualDosingByBatches($batchNumbers);
+                                            $rawDosingData = $quipmentModel->getActualDosingByBatches($batchNumbers);
 
                                             $dosingData = [];
                                             $adjustDosingData = [];
                                             $durationData = [];
-
-                                            // foreach ($rawDosingDataNew as $row) {
-                                            // }
 
                                             foreach ($rawDosingData as $row) {
                                                 $strName = trim(preg_replace('/\s*\d+\s*$/', '', $row['name_equipment']));
@@ -252,7 +248,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -310,7 +306,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -368,7 +364,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -426,7 +422,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -484,7 +480,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -542,7 +538,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -600,7 +596,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -658,7 +654,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -716,7 +712,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
