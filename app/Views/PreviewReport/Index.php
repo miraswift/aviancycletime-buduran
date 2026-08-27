@@ -248,7 +248,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="<?= env('BASE_URL') ?>/equipment/update/actual" method="post" enctype="multipart/form-data">
+                                                            <form action="<?= env('BASE_URL') ?>equipment/update/actual" method="post" enctype="multipart/form-data">
                                                                 <div class="modal-body">
                                                                     <?php if (session()->getFlashdata('failed')) : ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
