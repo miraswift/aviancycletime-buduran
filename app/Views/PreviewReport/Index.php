@@ -102,7 +102,7 @@
 
                                             $batchNumbers = array_column($batchs, 'no_batch');
                                             // dd($batchs);
-                                            $rawDosingData = $quipmentModel->getActualDosingByBatches($batchNumbers);
+                                            $rawDosingData = $equipmentModel->getActualDosingByBatches($batchNumbers);
 
                                             $dosingData = [];
                                             $adjustDosingData = [];
